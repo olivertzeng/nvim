@@ -95,7 +95,7 @@ if enabled(group, "toggleterm") then
 	-- opens terminal as a new tab at the git root
 	map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "New Tabbed Terminal" })
 	-- as a regular window
-	map("n", "<C-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "New Terminal" })
+	map("n", "<C-\\>", "<CMD>ToggleTerm go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "New Terminal" })
 	map(
 		"n",
 		"<leader>tk",
