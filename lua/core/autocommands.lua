@@ -4,7 +4,6 @@ local cmd = vim.api.nvim_create_autocmd
 local group = {}
 local enabled = require("core.utils").enabled
 
-
 -- disables code folding for the start screen
 if enabled(group, "alpha_folding") then
 	cmd({ "FileType" }, {

@@ -47,12 +47,12 @@ vim_opts({
 
 vim.filetype.add {
 	extension = {
-		zsh = "bash",
-		sh = "bash", -- force sh-files with zsh-shebang to still get sh as filetype
+		sh = "sh",
+		zsh = "sh",
 	},
 
 	filename = {
-		[".zshrc"] = "bash",
-		[".zshenv"] = "bash",
+		[".zshenv"] = "sh",
+		[".zshrc"] = "sh",
 	},
 }

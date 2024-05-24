@@ -389,7 +389,15 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"Wansmer/symbol-usage.nvim",
+		event = "LspAttach",
+		config = function()
+			require("plugin-configs.symbols")
+		end,
+	},
+	{
 		"roobert/action-hints.nvim",
+		enabled = false,
 		config = function()
 			require("plugin-configs.action-hints")
 		end,
