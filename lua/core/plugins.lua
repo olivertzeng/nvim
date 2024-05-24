@@ -396,6 +396,12 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"vyfor/cord.nvim",
+		build = "./build",
+		event = "VeryLazy",
+		opts = {},
+	},
+	{
 		"roobert/action-hints.nvim",
 		enabled = false,
 		config = function()
