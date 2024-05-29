@@ -83,12 +83,6 @@ if enabled(group, "lsp_zero") then
 	map("n", "sh", "<CMD>lua buf.signature_help()<CR>")
 end
 
--- Session
-if enabled(group, "session_manager") then
-	map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
-	map("n", "<leader>ss", "<CMD>SessionManager save_current_session<CR>")
-end
-
 -- ToggleTerm
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"

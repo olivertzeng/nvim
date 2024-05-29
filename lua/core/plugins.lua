@@ -107,14 +107,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"Shatur/neovim-session-manager",
-		cond = enabled(group, "session_manager"),
-		event = "VimEnter",
-		config = function()
-			require("plugin-configs.session")
-		end,
-	},
-	{
 		"folke/noice.nvim",
 		cond = enabled(group, "noice"),
 		event = "VimEnter",
@@ -402,15 +394,7 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-		"roobert/action-hints.nvim",
-		enabled = false,
-		config = function()
-			require("plugin-configs.action-hints")
-		end,
-	},
-	{
 		"Bekaboo/dropbar.nvim",
-		"Myzel394/easytables.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"jghauser/mkdir.nvim",
@@ -419,6 +403,7 @@ require("lazy").setup({
 		"tpope/vim-fugitive",
 		"tpope/vim-rhubarb",
 		"tpope/vim-sleuth",
+		{ "Myzel394/easytables.nvim", opts = {} },
 		{ "NvChad/nvim-colorizer.lua", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },

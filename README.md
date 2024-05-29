@@ -3,13 +3,13 @@
 <h3 align="center"><b>CyberNvim is the world's simplest and most extensible
 fully-fledged Neovim distribution.</b></h3>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
+![image](https://github.com/olivertzeng/nvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
 <h5 align="center"><b>CyberNvim Start Screen</b></h5>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/003c1a80-ea0a-4af4-b1bd-5d0b6729b1c5)
+![image](https://github.com/olivertzeng/nvim/assets/55164602/003c1a80-ea0a-4af4-b1bd-5d0b6729b1c5)
 <h5 align="center"><b>Text editor view</b></h5>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/ef8bb684-9b85-4afe-81c0-d254100d0db1)
+![image](https://github.com/olivertzeng/nvim/assets/55164602/ef8bb684-9b85-4afe-81c0-d254100d0db1)
 <h5 align="center"><b>Debugging UI and the Lazygit integration superimposed on top</b></h5>
 
 
@@ -75,7 +75,7 @@ care to ensure that every part of the configuration is easily understandable, ex
 and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
 
 <b>User configuration can be as simple as copy-pasting your current configuration in the
-[user conf section](https://github.com/pgosar/CyberNvim/wiki/Configuration#predefined-sections).</b>
+[user conf section](https://github.com/olivertzeng/nvim/wiki/Configuration#predefined-sections).</b>
 
 <h3 align="center"><b>Fantastic featureset GOOD 👍 🥰</b></h3>
 
@@ -94,53 +94,23 @@ and more
 * Complete inbuilt debugging support
 * Aesthetic UI enhancements!
 * Complete freedom to rewrite the config as you see fit
-* Incredibly easy [user configuration](https://github.com/pgosar/CyberNvim-Configuration) setup!
+* Incredibly easy [user configuration](https://github.com/olivertzeng/nvim-Configuration) setup!
 
 ### Installation and Configuration
 First, backup (rename, move etc.) your existing nvim configuration.
 Clone the repository and symlink it with your `~/.config/nvim` directory with
 
 ``` bash
-git clone https://github.com/pgosar/CyberNvim
-ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
+git clone https://github.com/olivertzeng/nvim
+ln -s nvim ~/.config/nvim
 ```
 
 Alternatively, directly clone it to the nvim folder:
 ```bash
-git clone https://github.com/pgosar/CyberNvim ~/.config/nvim
+git clone https://github.com/olivertzeng/nvim ~/.config/nvim
 ```
 
-Your personal configuration is housed in `user/user_config.lua`. Use `example_user_config.lua`
-as a guide to writing your own configuration. As an initial quickstart, I recommend
-running the following commands:
-```bash
-mkdir -pv ~/.config/nvim/lua/user
-cp ~/.config/nvim/lua/example_user_config.lua ~/.config/nvim/lua/user/user_config.lua
-```
-Alternatively, you can also take a look at my own
-[configuration](https://github.com/pgosar/CyberNvim-Configuration.git). Simply
-clone this as your user folder.
-```bash
-git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/lua/user
-```
-
-If you want to backup your personal configuration to git I suggest doing the following.
-The user folder is gitignored, meaning you can create a new git repository under that folder
-. CyberNvim will never push changes to your configuration files - at most it will update example_user_config.
-```bash
-cd ~/.config/nvim/lua/user
-git init
-# setup repository
-```
-
-Once done, Install any language servers, linters, etc. using `:MasonInstall`
-and/or `:LspInstall`. Use `:CyberUpdate` to update the distribution, including all
-plugins and parsers. Run `:checkhealth` to find any common issues with the installation.
-
-Beyond this, if you want to plug your current configuration in, it can be as simple as requiring all your files
-in the allotted user configuration function (see the
-[example](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua)).
-
+Your personal configuration is no longer seperated, it'll be your own config file!
 For more information, be sure to check the repository's wiki.
 
 ### Dependencies
@@ -159,3 +129,4 @@ For more information, be sure to check the repository's wiki.
 [LazyNvim](https://github.com/LazyVim/LazyVim) are two fantastic Neovim distributions that provided
 the inspiration for this project. They significantly raised the bar for what a modern, fully-fledged
 Neovim distribution should offer.
+[CyberNvim](https://github.com/pgosar/CyberNvim)
