@@ -14,4 +14,4 @@ require("lspconfig").basedpyright.setup({
 	},
 })
 
-lsp_zero.setup_servers({ "bashls", "clangd", "markdown_oxide", "marksman", "lua_ls" })
+lsp_zero.setup_servers({ "bashls", "clangd", "texlab", "lua_ls", "markdown_oxide", "marksman" })

@@ -1,1 +1,1 @@
-vim.g["suda#prompt"] = "密碼勒？？？ "
+vim.g["suda#prompt"] = " 密碼勒？？？ "

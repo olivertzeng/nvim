@@ -76,7 +76,7 @@ cmp.setup({
 	experimental = {
 		ghost_text = true,
 	},
-	mapping = cmp.mapping.preset.insert {
+	mapping = cmp.mapping.preset.insert({
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -104,20 +104,25 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-n>"] = { i = cmp.mapping.complete() },
-	},
+	}),
 	sources = {
+		{ name = "buffer" },
+		{ name = "buffer-lines" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
-		{ name = "rg" },
 		{ name = "treesitter" },
+	},
+})
+
+require("cmp").setup.cmdline({ "/", "?" }, {
+	mapping = require("cmp").mapping.preset.cmdline(),
+	sources = {
 		{
-			name = 'look',
-			keyword_length = 2,
-			option = {
-				convert_case = true,
-				loud = true
-			}
+			name = "buffer",
+			option = { keyword_pattern = [[\k\+]] },
 		},
+		{ name = "buffer-lines" },
 	},
 })
