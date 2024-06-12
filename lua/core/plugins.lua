@@ -211,6 +211,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
 			"mireq/luasnip-snippets",
+			"kdheepak/cmp-latex-symbols",
 			"onsails/lspkind.nvim",
 			"rafamadriz/friendly-snippets",
 			"ray-x/cmp-treesitter",
@@ -384,10 +385,7 @@ require("lazy").setup({
 		cmd = "GitLink",
 		opts = {},
 	},
-	{
-		"sQVe/sort.nvim",
-		opts = {},
-	},
+
 	{
 		"echasnovski/mini.indentscope",
 		config = function()
@@ -463,6 +461,7 @@ require("lazy").setup({
 		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
+		{ "sQVe/sort.nvim", opts = {} },
 	},
 }, {
 	performance = {
