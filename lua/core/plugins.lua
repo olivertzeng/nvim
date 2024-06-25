@@ -318,9 +318,12 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-lua/popup.nvim",
 			"nvim-telescope/telescope-frecency.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
 			"nvim-telescope/telescope-hop.nvim",
 			"nvim-telescope/telescope-symbols.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
 		},
 		config = function()
 			require("plugin-configs.telescope")

@@ -39,4 +39,4 @@ if enabled(group, "remember_file_state") then
 		pattern = { "*.*" },
 		command = "silent! loadview",
 	})
-end 
+end
