@@ -421,13 +421,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"MeanderingProgrammer/markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("plugin-configs.markdown")
-		end,
-	},
-	{
 		"m4xshen/smartcolumn.nvim",
 		config = function()
 			require("plugin-configs.smartcolumn")
@@ -458,13 +451,14 @@ require("lazy").setup({
 		"tpope/vim-sleuth",
 		{ "Myzel394/easytables.nvim", opts = {} },
 		{ "NvChad/nvim-colorizer.lua", opts = {} },
+		{ "OXY2DEV/markview.nvim", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
+		{ "sQVe/sort.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
-		{ "sQVe/sort.nvim", opts = {} },
 	},
 }, {
 	performance = {
