@@ -104,7 +104,7 @@ require("lazy").setup({
 	{
 		"stevearc/oil.nvim",
 		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "echasnovski/mini.icons" },
 		config = function()
 			require("plugin-configs.oil")
 		end,
@@ -205,8 +205,6 @@ require("lazy").setup({
 				},
 			},
 			"L3MON4D3/LuaSnip",
-			"amarakon/nvim-cmp-buffer-lines",
-			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
@@ -347,7 +345,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
-		dependencies = "nvim-tree/nvim-web-devicons",
+		dependencies = "echasnovski/mini.icons",
 		cond = enabled(group, "trouble"),
 		opts = {},
 	},
@@ -406,14 +404,14 @@ require("lazy").setup({
 	{
 		"max397574/better-escape.nvim",
 		config = function()
-			require("plugin-configs.escape")
+			require("better_escape").setup()
 		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"nvim-tree/nvim-web-devicons",
+			"echasnovski/mini.icons",
 			"mikesmithgh/git-prompt-string-lualine.nvim",
 		},
 		config = function()
@@ -440,6 +438,24 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
+		"echasnovski/mini.icons",
+		opts = {},
+		lazy = true,
+		init = function()
+			package.preload["nvim-web-devicons"] = function()
+				require("mini.icons").mock_nvim_web_devicons()
+				return package.loaded["nvim-web-devicons"]
+			end
+		end,
+	},
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+		config = function()
+			require("render-markdown").setup()
+		end,
+	},
+	{
 		"Bekaboo/dropbar.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
@@ -449,9 +465,7 @@ require("lazy").setup({
 		"tpope/vim-fugitive",
 		"tpope/vim-rhubarb",
 		"tpope/vim-sleuth",
-		{ "Myzel394/easytables.nvim", opts = {} },
 		{ "NvChad/nvim-colorizer.lua", opts = {} },
-		{ "OXY2DEV/markview.nvim", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },

@@ -106,8 +106,6 @@ cmp.setup({
 		["<C-n>"] = { i = cmp.mapping.complete() },
 	}),
 	sources = {
-		{ name = "buffer" },
-		{ name = "buffer-lines" },
 		{ name = "latex_symbols" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
