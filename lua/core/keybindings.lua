@@ -28,6 +28,12 @@ map("i", "<C-a>", "<C-o>A")
 map("i", "<C-b>", "<C-o>0")
 map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>nohlsearch<cr><right>")
 
+-- Window switching from terminal
+map("t", "<C-w>h", "<C-\\><C-n><C-w>h")
+map("t", "<C-w>j", "<C-\\><C-n><C-w>j")
+map("t", "<C-w>k", "<C-\\><C-n><C-w>k")
+map("t", "<C-w>l", "<C-\\><C-n><C-w>l")
+
 -- Command mode
 map("c", "<C-n>", "<Down>")
 map("c", "<C-p>", "<Up>")
@@ -69,9 +75,8 @@ map("n", "sh", "<CMD>lua buf.signature_help()<CR>")
 
 -- ToggleTerm
 local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
--- opens terminal as a new tab at the git root
-map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "New Tabbed Terminal" })
--- as a regular window
+map("t", "<C-\\>", "<C-\\><C-n>")
+-- open terminal as a regular window
 map("n", "<C-\\>", "<CMD>ToggleTerm go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "New Terminal" })
 map(
 	"n",
