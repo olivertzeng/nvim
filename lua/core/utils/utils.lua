@@ -92,18 +92,13 @@ end
 
 -- check if attached lsp supports formatting
 M.supports_formatting = function()
-	local clients = vim.lsp.get_active_clients()
+	local clients = vim.lsp.get_clients()
 	for _, client in ipairs(clients) do
 		if client.supports_method("textDocument/formatting") then
 			return true
 		end
 	end
 	return false
-end
-
--- check if option to disable is active from specified group
-M.enabled = function(group, opt)
-	return group == nil or group[opt] == nil or group[opt] == true
 end
 
 return M

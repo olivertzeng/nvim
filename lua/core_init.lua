@@ -23,17 +23,25 @@ for _, source in ipairs({
 		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
 	end
 end
+
 local exist, user_config = pcall(require, "user.user_config")
-local group = exist and type(user_config) == "table" and user_config.enable_plugins or {}
-if require("core.utils.utils").enabled(group, "notify") then
-	vim.notify = require("notify")
-end
+
+vim.notify = require("notify")
 
 vim.api.nvim_create_user_command("CyberUpdate", function()
 	require("core.utils.utils").update_all()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
-vim.cmd("colorscheme onedark")
+pcall(vim.cmd.colorscheme, "onedark")
+
+-- fix commentstrings to work with native nvim commenting
+local get_option = vim.filetype.get_option
+vim.filetype.get_option = function(filetype, option)
+	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+		or get_option(filetype, option)
+end
+
+pcall(require, "lsp-zero")
 
 if exist and type(user_config) == "table" and user_config.user_conf then
 	user_config.user_conf()
