@@ -1,11 +1,8 @@
-local enabled = require("core.utils").enabled
-
 local group = {}
 
 require("lazy").setup({
 	{
 		"stevearc/aerial.nvim",
-		cond = enabled(group, "aerial"),
 		cmd = "AerialToggle",
 		config = function()
 			require("plugin-configs.aerial")
@@ -13,28 +10,24 @@ require("lazy").setup({
 	},
 	{
 		"goolord/alpha-nvim",
-		cond = enabled(group, "alpha"),
 		config = function()
 			require("plugin-configs.alpha")
 		end,
 	},
 	{
 		"akinsho/bufferline.nvim",
-		cond = enabled(group, "bufferline"),
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
 	},
 	{
 		"numToStr/Comment.nvim",
-		cond = enabled(group, "comment"),
 		event = "VeryLazy",
 		opts = {},
 	},
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
-		cond = enabled(group, "dressing"),
 		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.dressing")
@@ -43,7 +36,6 @@ require("lazy").setup({
 	{
 		"smoka7/hop.nvim",
 		version = "*",
-		cond = enabled(group, "hop"),
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.hop")
@@ -51,7 +43,6 @@ require("lazy").setup({
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		cond = enabled(group, "lsp_zero"),
 		event = "VimEnter",
 		branch = "v3.x",
 		dependencies = {
@@ -63,7 +54,6 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim",
 		lazy = true,
-		cond = enabled(group, "gitsigns"),
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.gitsigns")
@@ -111,7 +101,6 @@ require("lazy").setup({
 	},
 	{
 		"folke/noice.nvim",
-		cond = enabled(group, "noice"),
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.noice")
@@ -120,7 +109,6 @@ require("lazy").setup({
 	},
 	{
 		"nvimtools/none-ls.nvim",
-		cond = enabled(group, "null_ls"),
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugin-configs.null-ls")
@@ -137,7 +125,6 @@ require("lazy").setup({
 	},
 	{
 		"windwp/nvim-autopairs",
-		cond = enabled(group, "autopairs"),
 		event = "InsertEnter",
 		config = function()
 			require("plugin-configs.autopairs")
@@ -150,7 +137,6 @@ require("lazy").setup({
 	},
 	{
 		"hrsh7th/nvim-cmp",
-		cond = enabled(group, "cmp"),
 		event = "InsertEnter",
 		opts = function(_, opts)
 			opts.sources = opts.sources or {}
@@ -237,7 +223,6 @@ require("lazy").setup({
 	},
 	{
 		"tamton-aquib/duck.nvim",
-		cond = enabled(group, "duck"),
 		opts = {},
 	},
 	{
@@ -252,16 +237,13 @@ require("lazy").setup({
 	},
 	{
 		"rcarriga/nvim-notify",
-		cond = enabled(group, "notify"),
 	},
 	{
 		"kylechui/nvim-surround",
-		cond = enabled(group, "surround"),
 		opts = {},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		cond = enabled(group, "treesitter"),
 		event = { "BufReadPost", "BufNewFile" },
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
@@ -279,7 +261,6 @@ require("lazy").setup({
 	},
 	{
 		"kevinhwang91/nvim-ufo",
-		cond = enabled(group, "ufo"),
 		event = "VimEnter",
 		dependencies = "kevinhwang91/promise-async",
 		opts = {},
@@ -293,7 +274,6 @@ require("lazy").setup({
 	},
 	{
 		"tiagovla/scope.nvim",
-		cond = enabled(group, "scope"),
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.scope")
@@ -307,7 +287,6 @@ require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		cond = enabled(group, "telescope"),
 		cmd = "Telescope",
 		dependencies = {
 			"AckslD/nvim-neoclip.lua",
@@ -329,7 +308,6 @@ require("lazy").setup({
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		cond = enabled(group, "toggleterm"),
 		event = "VeryLazy",
 		config = function()
 			_G.term = require("plugin-configs.toggleterm")
@@ -337,7 +315,6 @@ require("lazy").setup({
 	},
 	{
 		"wildfunctions/myeyeshurt",
-		cond = enabled(group, "myeyeshurt"),
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("plugin-configs.myeyeshurt")
@@ -346,12 +323,10 @@ require("lazy").setup({
 	{
 		"folke/trouble.nvim",
 		dependencies = "echasnovski/mini.icons",
-		cond = enabled(group, "trouble"),
 		opts = {},
 	},
 	{
 		"folke/which-key.nvim",
-		cond = enabled(group, "whichkey"),
 		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.which-key")
@@ -359,7 +334,6 @@ require("lazy").setup({
 	},
 	{
 		"lambdalisue/suda.vim",
-		cond = enabled(group, "suda"),
 		config = function()
 			require("plugin-configs.suda")
 		end,
@@ -381,7 +355,6 @@ require("lazy").setup({
 	},
 	{
 		"linrongbin16/gitlinker.nvim",
-		cond = enabled(group, "aerial"),
 		lazy = false,
 		cmd = "GitLink",
 		opts = {},
@@ -456,6 +429,11 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"danymat/neogen",
+		config = true,
+	},
+
+	{
 		"Bekaboo/dropbar.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
@@ -470,9 +448,11 @@ require("lazy").setup({
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
 		{ "sQVe/sort.nvim", opts = {} },
+		{ "smjonas/inc-rename.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
+		{ "echasnovski/mini.ai", version = false, opts = {} },
 	},
 }, {
 	performance = {

@@ -88,9 +88,4 @@ M.supports_formatting = function()
 	return false
 end
 
--- check if option to disable is active from specified group
-M.enabled = function(group, opt)
-	return group == nil or group[opt] == nil or group[opt] == true
-end
-
 return M

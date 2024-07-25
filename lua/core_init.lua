@@ -31,6 +31,4 @@ require("plugin-configs.notify")
 HOME_PATH = os.getenv("HOME") .. "/"
 MASON_PATH = HOME_PATH .. ".local/share/nvim/mason/packages/"
 
-if require("core.utils").enabled(group, "notify") then
-	vim.notify = require("notify")
-end
+vim.notify = require("notify")
