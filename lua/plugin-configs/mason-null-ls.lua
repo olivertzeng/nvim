@@ -1,4 +1,4 @@
-local exist, sources = pcall(require, "user.sources")
+local exist, sources = pcall(require, "core.sources")
 local sauces = exist
 		and type(sources) == "table"
 		and sources.mason_ensure_installed

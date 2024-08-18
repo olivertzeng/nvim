@@ -4,7 +4,6 @@ local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip_snippets.common.snip_utils").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp_hl = vim.api.nvim_create_augroup("CmpHighlights", {})
 local cmp_types = {

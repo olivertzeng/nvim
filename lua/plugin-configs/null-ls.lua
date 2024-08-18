@@ -1,6 +1,6 @@
 local null_ls = require("null-ls")
 
-local exist, sources = pcall(require, "user.sources")
+local exist, sources = pcall(require, "core.sources")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local sauces = exist and type(sources) == "table" and sources.setup_sauces and sources.setup_sauces(null_ls.builtins)
 	or {}

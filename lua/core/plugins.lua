@@ -1,5 +1,3 @@
-local group = {}
-
 require("lazy").setup({
 	{
 		"stevearc/aerial.nvim",
@@ -194,10 +192,9 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lua",
-			"mireq/luasnip-snippets",
 			"kdheepak/cmp-latex-symbols",
 			"onsails/lspkind.nvim",
-			"rafamadriz/friendly-snippets",
+			"olivertzeng/friendly-snippets",
 			"ray-x/cmp-treesitter",
 			"saadparwaiz1/cmp_luasnip",
 		},
@@ -251,9 +248,7 @@ require("lazy").setup({
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			"windwp/nvim-ts-autotag",
 			"HiPhish/rainbow-delimiters.nvim",
-			"JoosepAlviste/nvim-ts-context-commentstring",
 			{
 				"nvim-treesitter/nvim-treesitter-context",
 				config = function()
@@ -425,11 +420,20 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"MeanderingProgrammer/markdown.nvim",
+		"OXY2DEV/helpview.nvim",
+		lazy = false, -- Recommended
+
+		-- In case you still want to lazy load
+		-- ft = "help",
+
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"OXY2DEV/markview.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
-		config = function()
-			require("render-markdown").setup()
-		end,
+		opts = {},
 	},
 	{
 		"danymat/neogen",

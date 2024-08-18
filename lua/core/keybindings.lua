@@ -187,4 +187,14 @@ map("n", "<leader>rn", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "LSP rename" })
 
+-- compile.nvim
+map("n", "<F6>", "<CMD>CompilerOpen<CR>", { desc = "Open compiler panel" })
+map(
+	"n",
+	"<S-F6>",
+	"<cmd>CompilerStop<cr>" .. "<cmd>CompilerRedo<cr>",
+	{ noremap = true, silent = true, desc = "Redo action" }
+)
+map("n", "<S-F7>", "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+
 return M

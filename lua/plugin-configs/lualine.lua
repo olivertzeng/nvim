@@ -14,11 +14,9 @@ require("lualine").setup({
 		theme = "gruvbox-material",
 		globalstatus = false,
 		disabled_filetypes = { statusline = { "alpha" } },
-
 	},
 	sections = {
 		lualine_a = { "mode" },
-		-- lualine_b = { "git_prompt_string", "diagnostics" },
 		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
@@ -34,12 +32,11 @@ require("lualine").setup({
 			},
 			{
 				"diff",
-				colored = true, -- Displays a colored diff status if set to true
-				symbols = { added = "󰐖 ", modified = "󰦓 ", removed = " " }, -- Changes the symbols used by the diff.
+				colored = true,
+				symbols = { added = "󰐖 ", modified = "󰦓 ", removed = " " },
 				source = diff_source,
 			},
 		},
-
 		lualine_x = {
 			{
 				"fileformat",
