@@ -59,7 +59,6 @@ telescope.setup({
 		},
 	},
 })
-telescope.load_extension("aerial")
 telescope.load_extension("conflicts")
 telescope.load_extension("frecency")
 telescope.load_extension("fzf")

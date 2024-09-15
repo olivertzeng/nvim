@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 for _, source in ipairs({
-	"core.main-options",
+	"core.main",
 	"core.plugins",
 	"core.keybindings",
 	"core.utils",
@@ -24,9 +24,9 @@ for _, source in ipairs({
 	end
 end
 
-require("plugin-configs.lsp-zero")
-require("plugin-configs.mason")
-require("plugin-configs.notify")
+require("configs.lsp-zero")
+require("configs.mason")
+require("configs.notify")
 HOME_PATH = os.getenv("HOME") .. "/"
 MASON_PATH = HOME_PATH .. ".local/share/nvim/mason/packages/"
 

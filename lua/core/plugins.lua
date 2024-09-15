@@ -1,21 +1,14 @@
 require("lazy").setup({
 	{
-		"stevearc/aerial.nvim",
-		cmd = "AerialToggle",
-		config = function()
-			require("plugin-configs.aerial")
-		end,
-	},
-	{
 		"goolord/alpha-nvim",
 		config = function()
-			require("plugin-configs.alpha")
+			require("configs.alpha")
 		end,
 	},
 	{
 		"akinsho/bufferline.nvim",
 		config = function()
-			require("plugin-configs.bufferline")
+			require("configs.bufferline")
 		end,
 	},
 	{
@@ -28,7 +21,7 @@ require("lazy").setup({
 		lazy = true,
 		event = "VeryLazy",
 		config = function()
-			require("plugin-configs.dressing")
+			require("configs.dressing")
 		end,
 	},
 	{
@@ -36,7 +29,7 @@ require("lazy").setup({
 		version = "*",
 		event = "VimEnter",
 		config = function()
-			require("plugin-configs.hop")
+			require("configs.hop")
 		end,
 	},
 	{
@@ -54,7 +47,7 @@ require("lazy").setup({
 		lazy = true,
 		event = "VimEnter",
 		config = function()
-			require("plugin-configs.gitsigns")
+			require("configs.gitsigns")
 		end,
 	},
 	{
@@ -68,13 +61,13 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 		config = function()
-			require("plugin-configs.fidget")
+			require("configs.fidget")
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			require("plugin-configs.lspconfig")
+			require("configs.lspconfig")
 		end,
 	},
 	{
@@ -94,14 +87,14 @@ require("lazy").setup({
 		-- Optional dependencies
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
-			require("plugin-configs.oil")
+			require("configs.oil")
 		end,
 	},
 	{
 		"folke/noice.nvim",
 		event = "VimEnter",
 		config = function()
-			require("plugin-configs.noice")
+			require("configs.noice")
 		end,
 		dependencies = { "MunifTanjim/nui.nvim" },
 	},
@@ -109,14 +102,14 @@ require("lazy").setup({
 		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("plugin-configs.null-ls")
+			require("configs.null-ls")
 		end,
 		dependencies = {
 			{
 				"jay-babu/mason-null-ls.nvim",
 				cmd = { "NullLsInstall", "NullLsUninstall" },
 				config = function()
-					require("plugin-configs.mason-null-ls")
+					require("configs.mason-null-ls")
 				end,
 			},
 		},
@@ -125,13 +118,8 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
-			require("plugin-configs.autopairs")
+			require("configs.autopairs")
 		end,
-	},
-	{
-		"moyiz/command-and-cursor.nvim",
-		event = "VeryLazy",
-		opts = {},
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -144,7 +132,7 @@ require("lazy").setup({
 			})
 		end,
 		config = function()
-			require("plugin-configs.cmp")
+			require("configs.cmp")
 		end,
 		dependencies = {
 			{
@@ -203,7 +191,7 @@ require("lazy").setup({
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
-			require("plugin-configs.hardtime")
+			require("configs.hardtime")
 		end,
 	},
 	{
@@ -215,7 +203,7 @@ require("lazy").setup({
 		"L3MON4D3/LuaSnip",
 		dependencies = { "benfowler/telescope-luasnip.nvim" },
 		init = function()
-			require("plugin-configs.luasnip")
+			require("configs.luasnip")
 		end,
 	},
 	{
@@ -244,7 +232,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			require("plugin-configs.treesitter")
+			require("configs.treesitter")
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -252,7 +240,7 @@ require("lazy").setup({
 			{
 				"nvim-treesitter/nvim-treesitter-context",
 				config = function()
-					require("plugin-configs.treesitter-context")
+					require("configs.treesitter-context")
 				end,
 			},
 		},
@@ -274,13 +262,13 @@ require("lazy").setup({
 		"tiagovla/scope.nvim",
 		event = "VimEnter",
 		config = function()
-			require("plugin-configs.scope")
+			require("configs.scope")
 		end,
 	},
 	{
 		"gerazov/toggle-bool.nvim",
 		config = function()
-			require("plugin-configs.bool")
+			require("configs.bool")
 		end,
 	},
 	{
@@ -301,21 +289,14 @@ require("lazy").setup({
 			},
 		},
 		config = function()
-			require("plugin-configs.telescope")
+			require("configs.telescope")
 		end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
 		event = "VeryLazy",
 		config = function()
-			_G.term = require("plugin-configs.toggleterm")
-		end,
-	},
-	{
-		"wildfunctions/myeyeshurt",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("plugin-configs.myeyeshurt")
+			_G.term = require("configs.toggleterm")
 		end,
 	},
 	{
@@ -327,20 +308,20 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("plugin-configs.which-key")
+			require("configs.which-key")
 		end,
 	},
 	{
 		"lambdalisue/suda.vim",
 		config = function()
-			require("plugin-configs.suda")
+			require("configs.suda")
 		end,
 	},
 	{
 		"mawkler/modicator.nvim",
 		dependencies = "f4z3r/gruvbox-material.nvim", -- Add your colorscheme plugin here
 		init = function()
-			require("plugin-configs.modicator")
+			require("configs.modicator")
 		end,
 		opts = {},
 	},
@@ -348,7 +329,7 @@ require("lazy").setup({
 	{
 		"folke/todo-comments.nvim",
 		config = function()
-			require("plugin-configs.todo")
+			require("configs.todo")
 		end,
 	},
 	{
@@ -361,7 +342,7 @@ require("lazy").setup({
 	{
 		"echasnovski/mini.indentscope",
 		config = function()
-			require("plugin-configs.indentscope")
+			require("configs.indentscope")
 		end,
 	},
 	{
@@ -386,20 +367,20 @@ require("lazy").setup({
 			"mikesmithgh/git-prompt-string-lualine.nvim",
 		},
 		config = function()
-			require("plugin-configs.lualine")
+			require("configs.lualine")
 		end,
 	},
 	{
 		"m4xshen/smartcolumn.nvim",
 		config = function()
-			require("plugin-configs.smartcolumn")
+			require("configs.smartcolumn")
 		end,
 	},
 	{
 		"Wansmer/symbol-usage.nvim",
 		event = "LspAttach",
 		config = function()
-			require("plugin-configs.symbols")
+			require("configs.symbols")
 		end,
 	},
 	{

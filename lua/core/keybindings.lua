@@ -15,9 +15,6 @@ map("n", "<leader>xX", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", { des
 map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
 map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
 
--- Aerial
-map("n", "<leader>at", "<CMD>AerialToggle<CR>")
-
 -- Searching and Highlighting
 map("n", "m", "<CMD>noh<CR>")
 
@@ -39,7 +36,6 @@ map("c", "<C-n>", "<Down>")
 map("c", "<C-p>", "<Up>")
 
 -- Telescope
-map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
 map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 map("n", "<leader>fc", "<CMD>Telescope commands<CR>")
 map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
