@@ -3,13 +3,13 @@
 <h3 align="center"><b>CyberNvim is the world's simplest and most extensible
 fully-fledged Neovim distribution.</b></h3>
 
-![image](https://github.com/olivertzeng/nvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
 <h5 align="center"><b>CyberNvim Start Screen</b></h5>
 
-![image](https://github.com/olivertzeng/nvim/assets/55164602/003c1a80-ea0a-4af4-b1bd-5d0b6729b1c5)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/003c1a80-ea0a-4af4-b1bd-5d0b6729b1c5)
 <h5 align="center"><b>Text editor view</b></h5>
 
-![image](https://github.com/olivertzeng/nvim/assets/55164602/ef8bb684-9b85-4afe-81c0-d254100d0db1)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/ef8bb684-9b85-4afe-81c0-d254100d0db1)
 <h5 align="center"><b>Debugging UI and the Lazygit integration superimposed on top</b></h5>
 
 
