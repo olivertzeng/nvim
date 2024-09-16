@@ -402,11 +402,7 @@ require("lazy").setup({
 	},
 	{
 		"OXY2DEV/helpview.nvim",
-		lazy = false, -- Recommended
-
-		-- In case you still want to lazy load
-		-- ft = "help",
-
+		lazy = false,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -420,7 +416,6 @@ require("lazy").setup({
 		"danymat/neogen",
 		config = true,
 	},
-
 	{
 		"Bekaboo/dropbar.nvim",
 		"dstein64/nvim-scrollview",
@@ -428,19 +423,20 @@ require("lazy").setup({
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
 		"lambdalisue/suda.vim",
+		"letieu/hacker.nvim",
 		"tpope/vim-fugitive",
 		"tpope/vim-rhubarb",
 		"tpope/vim-sleuth",
 		{ "NvChad/nvim-colorizer.lua", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
+		{ "echasnovski/mini.ai", version = false, opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
 		{ "sQVe/sort.nvim", opts = {} },
 		{ "smjonas/inc-rename.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
-		{ "echasnovski/mini.ai", version = false, opts = {} },
 	},
 }, {
 	performance = {
