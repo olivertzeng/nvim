@@ -34,36 +34,6 @@ M.has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- creates floating terminal for toggleterm
-M.create_floating_terminal = function(term, cmd)
-	local instance = nil
-	if vim.fn.executable(cmd) == 1 then
-		local terminal = term.Terminal
-		instance = terminal:new({
-			cmd = cmd,
-			dir = "git_dir",
-			direction = "float",
-			float_opts = {
-				border = "double",
-			},
-			on_open = function()
-				vim.cmd("startinsert!")
-			end,
-			on_close = function()
-				vim.cmd("startinsert!")
-			end,
-		})
-	end
-	-- check if TermExec function exists
-	return function()
-		if vim.fn.executable(cmd) == 1 and instance ~= nil then
-			instance:toggle()
-		else
-			vim.notify("找不到指令。還敢不先安裝 " .. cmd .. " 啊！？", "error")
-		end
-	end
-end
-
 -- updates all Mason packages
 M.update_mason = function()
 	local registry = require("mason-registry")

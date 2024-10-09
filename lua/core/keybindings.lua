@@ -4,12 +4,12 @@ vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
 -- Trouble
+map("n", "<leader>xL", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
+map("n", "<leader>xQ", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+map("n", "<leader>xX", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
 map("n", "<leader>xd", "<CMD>Trouble lsp_definitions toggle<CR>")
 map("n", "<leader>xr", "<CMD>Trouble lsp_references toggle<CR>")
-map("n", "<leader>xQ", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
-map("n", "<leader>xL", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 map("n", "<leader>xx", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
-map("n", "<leader>xX", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
 
 -- UFO
 map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
@@ -50,15 +50,7 @@ map("x", "<A-j>", ":m '>+1<CR>gv=gv")
 map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Notify
-map("i", "<ESC>", "<CMD>lua require('notify').dismiss()<CR><ESC>")
-map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
-
-map("n", "<leader>sb", function()
-	require("myeyeshurt").start()
-end, { desc = "Begin The Snow" })
-map("n", "<leader>sx", function()
-	require("myeyeshurt").stop()
-end, { desc = "Stop The Snow" })
+map({ "i", "n" }, "<ESC>", "<CMD>lua require('notify').dismiss()<CR><ESC>")
 
 -- More LSP stuff
 _G.buf = vim.lsp.buf
@@ -82,9 +74,21 @@ map(
 )
 map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "Open Lazygit" })
 
--- Hop
-map("n", "<leader>jw", "<CMD>HopWord<CR>", { desc = "Hop to Word" })
-map("n", "<leader>jl", "<CMD>HopLine<CR>", { desc = "Hop to Line" })
+map({ "n", "o", "x" }, "s", function()
+	require("flash").jump()
+end, { desc = "Flash" })
+map({ "n", "o", "x" }, "S", function()
+	require("flash").jump()
+end, { desc = "Flash Treesitter" })
+map("o", "r", function()
+	require("flash").remote()
+end, { desc = "Remote Flash" })
+map({ "o", "x" }, "R", function()
+	require("flash").treesitter_search()
+end, { desc = "Treesitter Search" })
+map("c", "<c-s>", function()
+	require("flash").toggle()
+end, { desc = "Toggle Flash Search" })
 
 -- Gitsigns
 
@@ -182,15 +186,5 @@ map("n", "<Leader>nt", "<CMD>Neogen type<CR>", { desc = "Add type annotation" })
 map("n", "<leader>rn", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "LSP rename" })
-
--- compile.nvim
-map("n", "<F6>", "<CMD>CompilerOpen<CR>", { desc = "Open compiler panel" })
-map(
-	"n",
-	"<S-F6>",
-	"<cmd>CompilerStop<cr>" .. "<cmd>CompilerRedo<cr>",
-	{ noremap = true, silent = true, desc = "Redo action" }
-)
-map("n", "<S-F7>", "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
 
 return M

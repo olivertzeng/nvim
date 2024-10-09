@@ -11,11 +11,7 @@ require("lazy").setup({
 			require("configs.bufferline")
 		end,
 	},
-	{
-		"numToStr/Comment.nvim",
-		event = "VeryLazy",
-		opts = {},
-	},
+
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
@@ -24,14 +20,7 @@ require("lazy").setup({
 			require("configs.dressing")
 		end,
 	},
-	{
-		"smoka7/hop.nvim",
-		version = "*",
-		event = "VimEnter",
-		config = function()
-			require("configs.hop")
-		end,
-	},
+
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		event = "VimEnter",
@@ -84,8 +73,6 @@ require("lazy").setup({
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"stevearc/oil.nvim",
-		-- Optional dependencies
-		dependencies = { "echasnovski/mini.icons" },
 		config = function()
 			require("configs.oil")
 		end,
@@ -117,74 +104,19 @@ require("lazy").setup({
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = function()
-			require("configs.autopairs")
-		end,
+		opts = { map_c_w = true },
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		opts = function(_, opts)
-			opts.sources = opts.sources or {}
-			table.insert(opts.sources, {
-				name = "lazydev",
-				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-			})
-		end,
-		config = function()
-			require("configs.cmp")
-		end,
-		dependencies = {
-			{
-				"zjp-CN/nvim-cmp-lsp-rs",
-				---@type cmp_lsp_rs.Opts
-				opts = {
-					-- Filter out import items starting with one of these prefixes.
-					-- A prefix can be crate name, module name or anything an import
-					-- path starts with, no matter it's complete or incomplete.
-					-- Only literals are recognized: no regex matching.
-					unwanted_prefix = { "color", "ratatui::style::Styled" },
-					-- make these kinds prior to others
-					-- e.g. make Module kind first, and then Function second,
-					--      the rest ordering is merged from a default kind list
-					kind = function(k)
-						-- The argument in callback is type-aware with opts annotated,
-						-- so you can type the CompletionKind easily.
-						return { k.Module, k.Function }
-					end,
-					-- Override the default comparator list provided by this plugin.
-					-- Mainly used with key binding to switch between these Comparators.
-					combo = {
-						-- The key is the name for combination of comparators and used
-						-- in notification in swiching.
-						-- The value is a list of comparators functions or a function
-						-- to generate the list.
-						alphabetic_label_but_underscore_last = function()
-							local comparators = require("cmp_lsp_rs").comparators
-							return { comparators.sort_by_label_but_underscore_last }
-						end,
-						recentlyUsed_sortText = function()
-							local compare = require("cmp").config.compare
-							local comparators = require("cmp_lsp_rs").comparators
-							-- Mix cmp sorting function with cmp_lsp_rs.
-							return {
-								compare.recently_used,
-								compare.sort_text,
-								comparators.sort_by_label_but_underscore_last,
-							}
-						end,
-					},
-				},
+		"Saghen/blink.cmp",
+		version = "v0.*",
+		dependencies = "olivertzeng/friendly-snippets",
+		opts = {
+			highlight = {
+				use_nvim_cmp_as_default = true,
 			},
-			"L3MON4D3/LuaSnip",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-nvim-lua",
-			"kdheepak/cmp-latex-symbols",
-			"onsails/lspkind.nvim",
-			"olivertzeng/friendly-snippets",
-			"ray-x/cmp-treesitter",
-			"saadparwaiz1/cmp_luasnip",
+			nerd_font_variant = "normal",
+			accept = { auto_brackets = { enabled = true } },
+			trigger = { signature_help = { enabled = true } },
 		},
 	},
 	{
@@ -206,10 +138,7 @@ require("lazy").setup({
 			require("configs.luasnip")
 		end,
 	},
-	{
-		"tamton-aquib/duck.nvim",
-		opts = {},
-	},
+
 	{
 		"hinell/lsp-timeout.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
@@ -220,13 +149,7 @@ require("lazy").setup({
 		config = true,
 		default_mappings = true,
 	},
-	{
-		"rcarriga/nvim-notify",
-	},
-	{
-		"kylechui/nvim-surround",
-		opts = {},
-	},
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -267,9 +190,22 @@ require("lazy").setup({
 	},
 	{
 		"gerazov/toggle-bool.nvim",
-		config = function()
-			require("configs.bool")
-		end,
+		opts = {
+			additional_toggles = {
+				All = "None",
+				Allow = "Deny",
+				Before = "After",
+				Enable = "Disable",
+				Enabled = "Disabled",
+				First = "Last",
+				Ingress = "Egress",
+				Internal = "External",
+				On = "Off",
+				Persistent = "Ephemeral",
+				Yes = "No",
+				["0"] = "1",
+			},
+		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -293,17 +229,12 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"akinsho/toggleterm.nvim",
-		event = "VeryLazy",
+		"jaimecgomezz/here.term",
 		config = function()
-			_G.term = require("configs.toggleterm")
+			require("configs.term")
 		end,
 	},
-	{
-		"folke/trouble.nvim",
-		dependencies = "echasnovski/mini.icons",
-		opts = {},
-	},
+
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -334,7 +265,6 @@ require("lazy").setup({
 	},
 	{
 		"linrongbin16/gitlinker.nvim",
-		lazy = false,
 		cmd = "GitLink",
 		opts = {},
 	},
@@ -363,7 +293,6 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"echasnovski/mini.icons",
 			"mikesmithgh/git-prompt-string-lualine.nvim",
 		},
 		config = function()
@@ -402,15 +331,9 @@ require("lazy").setup({
 	},
 	{
 		"OXY2DEV/helpview.nvim",
-		lazy = false,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-	},
-	{
-		"OXY2DEV/markview.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
-		opts = {},
 	},
 	{
 		"danymat/neogen",
@@ -418,12 +341,15 @@ require("lazy").setup({
 	},
 	{
 		"Bekaboo/dropbar.nvim",
+		"OXY2DEV/markview.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
 		"lambdalisue/suda.vim",
 		"letieu/hacker.nvim",
+		"rcarriga/nvim-notify",
+		"tamton-aquib/duck.nvim",
 		"tpope/vim-fugitive",
 		"tpope/vim-rhubarb",
 		"tpope/vim-sleuth",
@@ -431,7 +357,11 @@ require("lazy").setup({
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "echasnovski/mini.ai", version = false, opts = {} },
+		{ "folke/flash.nvim", event = "VeryLazy", opts = {} },
+		{ "folke/trouble.nvim", opts = {} },
+		{ "kylechui/nvim-surround", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
+		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 		{ "sQVe/sort.nvim", opts = {} },
 		{ "smjonas/inc-rename.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
