@@ -1,10 +1,32 @@
-local exist, sources = pcall(require, "core.sources")
-local sauces = exist
-		and type(sources) == "table"
-		and sources.mason_ensure_installed
-		and sources.mason_ensure_installed.null_ls
-	or {}
-
 require("mason-null-ls").setup({
-	ensure_installed = sauces,
+	ensure_installed = {
+		"bash-language-server",
+		"beautysh",
+		"biome",
+		"black",
+		"cbfmt",
+		"clang-format",
+		"clangd",
+		"css-lsp",
+		"css-variables-language-server",
+		"gitlint",
+		"gofumpt",
+		"goimports-reviser",
+		"gopls",
+		"isort",
+		"latexindent",
+		"ltex-ls",
+		"lua-language-server",
+		"markdown-oxide",
+		"markdown-toc",
+		"markdownlint-cli2",
+		"marksman",
+		"revive",
+		"shfmt",
+		"staticcheck",
+		"stylelint",
+		"stylua",
+		"systemdlint",
+		"texlab",
+	},
 })
