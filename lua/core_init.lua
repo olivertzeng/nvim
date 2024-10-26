@@ -25,7 +25,6 @@ for _, source in ipairs({
 end
 
 require("configs.lsp-zero")
-require("configs.mason")
 require("configs.notify")
 HOME_PATH = os.getenv("HOME") .. "/"
 MASON_PATH = HOME_PATH .. ".local/share/nvim/mason/packages/"

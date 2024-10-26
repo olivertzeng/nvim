@@ -207,84 +207,34 @@ require("lazy").setup({
 			require("configs.luasnip")
 		end,
 	},
+
+	{
+		"hinell/lsp-timeout.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
 	{
 		"akinsho/git-conflict.nvim",
 		version = "*",
 		config = true,
 		default_mappings = true,
 	},
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"bash",
-					"bibtex",
-					"c",
-					"cpp",
-					"css",
-					"csv",
-					"diff",
-					"git_config",
-					"git_rebase",
-					"gitattributes",
-					"gitcommit",
-					"gitignore",
-					"go",
-					"html",
-					"javascript",
-					"jsdoc",
-					"json",
-					"jsonc",
-					"latex",
-					"lua",
-					"luadoc",
-					"luap",
-					"make",
-					"markdown",
-					"markdown_inline",
-					"mermaid",
-					"po",
-					"printf",
-					"python",
-					"qmljs",
-					"query",
-					"regex",
-					"rst",
-					"scss",
-					"toml",
-					"tsx",
-					"typescript",
-					"vim",
-					"vimdoc",
-					"vue",
-					"xml",
-					"yaml",
-				},
-				highlight = { enable = true },
-				incremental_selection = { enable = true },
-				autotag = { enable = true },
-				rainbow = { enable = true, disable = { "html" }, extended_mode = false },
-				dependencies = {
-					"nvim-treesitter/nvim-treesitter-textobjects",
-					"HiPhish/rainbow-delimiters.nvim",
-					{
-						"nvim-treesitter/nvim-treesitter-context",
-						opts = {
-							max_lines = 1,
-							multiline_threshold = 2,
-						},
-					},
-				},
-			})
-			require("nvim-treesitter.install").prefer_git = true
+			require("configs.treesitter")
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"HiPhish/rainbow-delimiters.nvim",
-			"nvim-treesitter/nvim-treesitter-context",
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				config = function()
+					require("configs.treesitter-context")
+				end,
+			},
 		},
 	},
 	{
@@ -347,75 +297,50 @@ require("lazy").setup({
 	},
 	{
 		"jaimecgomezz/here.term",
-		opts = {
-			startup_command = "alpha",
-			mappings = {
-				toggle = "<C-t>",
-			},
-		},
+		config = function()
+			require("configs.term")
+		end,
 	},
 
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {
-			icons = {
-				breadcrumb = " ", -- symbol used in the command line area that shows your active key combo
-				separator = "󰛂 ", -- symbol used between a key and it's label
-				group = " ", -- symbol prepended to a group
-			},
-		},
+		config = function()
+			require("configs.which-key")
+		end,
 	},
 	{
 		"lambdalisue/suda.vim",
 		config = function()
-			vim.g["suda#prompt"] = " 密碼勒？？？ "
+			require("configs.suda")
 		end,
 	},
 	{
 		"mawkler/modicator.nvim",
 		dependencies = "f4z3r/gruvbox-material.nvim", -- Add your colorscheme plugin here
-		opts = {
-			{
-				show_warnings = false,
-				highlights = {
-					defaults = {
-						bold = true,
-						italic = true,
-					},
-				},
-			},
-		},
+		init = function()
+			require("configs.modicator")
+		end,
+		opts = {},
 	},
 	-- HACK: this looks cool
 	{
 		"folke/todo-comments.nvim",
-		opts = {
-			highlight = {
-				comments_only = false,
-			},
-			colors = {
-				error = { "DiagnosticError", "ErrorMsg", "#fb4934" },
-				warning = { "DiagnosticWarn", "WarningMsg", "#fabd2f" },
-				info = { "DiagnosticInfo", "#458588" },
-				hint = { "DiagnosticHint", "#83a598" },
-				default = { "Identifier", "#d8a064" },
-				test = { "Identifier", "#b16286" },
-			},
-		},
+		config = function()
+			require("configs.todo")
+		end,
 	},
 	{
-		"smoka7/hop.nvim",
-		version = "*",
-		opts = {
-			keys = "etovxqpdygfblzhckisuran",
-			multi_windows = true,
-		},
+		"linrongbin16/gitlinker.nvim",
+		cmd = "GitLink",
+		opts = {},
 	},
 
 	{
 		"echasnovski/mini.indentscope",
-		opts = { symbol = "╎" },
+		config = function()
+			require("configs.indentscope")
+		end,
 	},
 	{
 		"kevinhwang91/nvim-fundo",
@@ -439,6 +364,12 @@ require("lazy").setup({
 		},
 		config = function()
 			require("configs.lualine")
+		end,
+	},
+	{
+		"m4xshen/smartcolumn.nvim",
+		config = function()
+			require("configs.smartcolumn")
 		end,
 	},
 	{
@@ -466,13 +397,21 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"danymat/neogen",
+		config = true,
+	},
+	{
+		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/markview.nvim",
 		"ck-zhang/mistake.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
-		"hinell/lsp-timeout.nvim",
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
 		"lambdalisue/suda.vim",
@@ -485,11 +424,10 @@ require("lazy").setup({
 		{ "NvChad/nvim-colorizer.lua", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
-		{ "danymat/neogen", config = true },
 		{ "echasnovski/mini.ai", version = false, opts = {} },
+		{ "folke/flash.nvim", event = "VeryLazy", opts = {} },
 		{ "folke/trouble.nvim", opts = {} },
 		{ "kylechui/nvim-surround", opts = {} },
-		{ "linrongbin16/gitlinker.nvim", cmd = "GitLink", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
 		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 		{ "nvchad/menu", lazy = true },

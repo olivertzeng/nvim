@@ -74,21 +74,9 @@ map(
 )
 map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "Open Lazygit" })
 
-map({ "n", "o", "x" }, "s", function()
-	require("flash").jump()
-end, { desc = "Flash" })
-map({ "n", "o", "x" }, "S", function()
-	require("flash").jump()
-end, { desc = "Flash Treesitter" })
-map("o", "r", function()
-	require("flash").remote()
-end, { desc = "Remote Flash" })
-map({ "o", "x" }, "R", function()
-	require("flash").treesitter_search()
-end, { desc = "Treesitter Search" })
-map("c", "<c-s>", function()
-	require("flash").toggle()
-end, { desc = "Toggle Flash Search" })
+-- hop.nvim
+map("n", "<leader>jw", "<CMD>HopWord<CR>", { desc = "Hop to Word" })
+map("n", "<leader>jl", "<CMD>HopLine<CR>", { desc = "Hop to Line" })
 
 -- Gitsigns
 
@@ -181,6 +169,9 @@ map("n", "<leader>F", "<CMD>LspZeroFormat<CR>", { desc = "Format file" })
 map("n", "<Leader>nc", "<CMD>Neogen class<CR>", { desc = "Add class annotation" })
 map("n", "<Leader>nf", "<CMD>Neogen func<CR>", { desc = "Add function annotation" })
 map("n", "<Leader>nt", "<CMD>Neogen type<CR>", { desc = "Add type annotation" })
+
+-- ShowKeys
+map("n", "<Leader>kl", "<CMD>ShowkeysToggle<CR>", { desc = "Keylogger" })
 
 -- inc-rename
 map("n", "<leader>rn", function()
