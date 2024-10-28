@@ -7,9 +7,16 @@ require("lazy").setup({
 	},
 	{
 		"akinsho/bufferline.nvim",
-		config = function()
-			require("configs.bufferline")
-		end,
+		opts = {
+			options = {
+				diagnostics = "nvim_lsp",
+				separator_style = "slant",
+				diagnostics_indicator = function(count, level)
+					local icon = level:match("error") and " " or " "
+					return " " .. icon .. count
+				end,
+			},
+		},
 	},
 
 	{
@@ -32,7 +39,6 @@ require("lazy").setup({
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"williamboman/mason-lspconfig.nvim",
-			"williamboman/mason.nvim",
 		},
 	},
 	{
@@ -44,18 +50,14 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"j-hui/fidget.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"williamboman/mason.nvim",
-		},
-	},
-	{
 		"j-hui/fidget.nvim",
-		config = function()
-			require("configs.fidget")
-		end,
+		opts = {
+			progress = {
+				display = {
+					done_icon = "",
+				},
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -65,11 +67,9 @@ require("lazy").setup({
 	},
 	{
 		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
+		ft = "lua",
 		opts = {
 			library = {
-				-- See the configuration section for more details
-				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
 			},
 		},
@@ -77,9 +77,12 @@ require("lazy").setup({
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"stevearc/oil.nvim",
-		config = function()
-			require("configs.oil")
-		end,
+		opts = {
+			lsp_file_methods = {
+				autosave_changes = true,
+			},
+			watch_for_changes = true,
+		},
 	},
 	{
 		"folke/noice.nvim",
@@ -122,7 +125,7 @@ require("lazy").setup({
 		end,
 		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+		build = ':lua require("go.install").update_all_sync()',
 	},
 	{
 		"iguanacucumber/magazine.nvim",
@@ -131,7 +134,7 @@ require("lazy").setup({
 			opts.sources = opts.sources or {}
 			table.insert(opts.sources, {
 				name = "lazydev",
-				group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				group_index = 0,
 			})
 		end,
 		config = function()
@@ -142,26 +145,11 @@ require("lazy").setup({
 				"zjp-CN/nvim-cmp-lsp-rs",
 				---@type cmp_lsp_rs.Opts
 				opts = {
-					-- Filter out import items starting with one of these prefixes.
-					-- A prefix can be crate name, module name or anything an import
-					-- path starts with, no matter it's complete or incomplete.
-					-- Only literals are recognized: no regex matching.
 					unwanted_prefix = { "color", "ratatui::style::Styled" },
-					-- make these kinds prior to others
-					-- e.g. make Module kind first, and then Function second,
-					--      the rest ordering is merged from a default kind list
 					kind = function(k)
-						-- The argument in callback is type-aware with opts annotated,
-						-- so you can type the CompletionKind easily.
 						return { k.Module, k.Function }
 					end,
-					-- Override the default comparator list provided by this plugin.
-					-- Mainly used with key binding to switch between these Comparators.
 					combo = {
-						-- The key is the name for combination of comparators and used
-						-- in notification in swiching.
-						-- The value is a list of comparators functions or a function
-						-- to generate the list.
 						alphabetic_label_but_underscore_last = function()
 							local comparators = require("cmp_lsp_rs").comparators
 							return { comparators.sort_by_label_but_underscore_last }
@@ -169,7 +157,6 @@ require("lazy").setup({
 						recentlyUsed_sortText = function()
 							local compare = require("cmp").config.compare
 							local comparators = require("cmp_lsp_rs").comparators
-							-- Mix cmp sorting function with cmp_lsp_rs.
 							return {
 								compare.recently_used,
 								compare.sort_text,
@@ -180,14 +167,17 @@ require("lazy").setup({
 				},
 			},
 			"L3MON4D3/LuaSnip",
-			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-nvim-lua",
+			"https://codeberg.org/FelipeLema/cmp-async-path",
 			"kdheepak/cmp-latex-symbols",
-			"onsails/lspkind.nvim",
 			"olivertzeng/friendly-snippets",
+			"onsails/lspkind.nvim",
 			"ray-x/cmp-treesitter",
 			"saadparwaiz1/cmp_luasnip",
+			{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+			{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+			{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+			{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
 		},
 	},
 	{
@@ -360,9 +350,9 @@ require("lazy").setup({
 		event = "VeryLazy",
 		opts = {
 			icons = {
-				breadcrumb = " ", -- symbol used in the command line area that shows your active key combo
-				separator = "󰛂 ", -- symbol used between a key and it's label
-				group = " ", -- symbol prepended to a group
+				breadcrumb = " ",
+				separator = "󰛂 ",
+				group = " ",
 			},
 		},
 	},
@@ -407,10 +397,7 @@ require("lazy").setup({
 	{
 		"smoka7/hop.nvim",
 		version = "*",
-		opts = {
-			keys = "etovxqpdygfblzhckisuran",
-			multi_windows = true,
-		},
+		opts = { multi_windows = true },
 	},
 
 	{
@@ -477,6 +464,7 @@ require("lazy").setup({
 		"jsongerber/thanks.nvim",
 		"lambdalisue/suda.vim",
 		"letieu/hacker.nvim",
+		"neovim/nvim-lspconfig",
 		"rcarriga/nvim-notify",
 		"tamton-aquib/duck.nvim",
 		"tpope/vim-fugitive",
@@ -499,6 +487,7 @@ require("lazy").setup({
 		{ "smjonas/inc-rename.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
+		{ "williamboman/mason.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
 	},
 }, {
