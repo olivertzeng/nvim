@@ -178,4 +178,12 @@ map("n", "<leader>rn", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "LSP rename" })
 
+-- menu
+map("n", "<RightMouse>", function()
+	vim.cmd.exec('"normal! \\<RightMouse>"')
+
+	local options = vim.bo.ft == "oil" or "default"
+	require("menu").open(options, { mouse = true })
+end, {})
+
 return M

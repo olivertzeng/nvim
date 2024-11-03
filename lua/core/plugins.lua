@@ -456,7 +456,6 @@ require("lazy").setup({
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
 		"OXY2DEV/markview.nvim",
-		"ck-zhang/mistake.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"hinell/lsp-timeout.nvim",

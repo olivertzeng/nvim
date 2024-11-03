@@ -3,9 +3,20 @@ local cmp_action = require("lsp-zero").cmp_action()
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
+local lspkind = require("lspkind")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup({
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			maxwidth = {
+				menu = 50,
+				abbr = 50,
+			},
+			ellipsis_char = "...",
+			show_labelDetails = true,
+		}),
+	},
 	enabled = function()
 		-- disables in comments
 		local context = require("cmp.config.context")
