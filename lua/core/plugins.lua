@@ -480,6 +480,7 @@ require("lazy").setup({
 		{ "nacro90/numb.nvim", opts = {} },
 		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 		{ "nvchad/menu", lazy = true },
+		{ "nvchad/minty", lazy = true },
 		{ "nvchad/showkeys", cmd = "ShowkeysToggle" },
 		{ "nvchad/volt", lazy = true },
 		{ "sQVe/sort.nvim", opts = {} },
