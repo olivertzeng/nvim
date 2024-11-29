@@ -1,6 +1,6 @@
 local map = require("core.utils").map
 
-vim.g.mapleader = " " -- the leader key is the spacebar
+vim.g.mapleader = " "
 local M = {}
 
 -- Trouble
@@ -160,7 +160,13 @@ map("n", "<leader>da", function()
 end, { desc = "Cook All Of Your Pets" })
 
 -- Git Link
-map("n", "<leader>gl", "<cmd>GitLink!<cr>", { desc = "Open git link" })
+map({ "n", "v" }, "<leader>gp", function()
+	require("gitportal").open_file_in_browser()
+end, { desc = "Open git link" })
+map("n", "<leader>gl", function()
+	require("gitportal").open_file_in_neovim()
+end, { desc = "Open git file" })
+
 map("n", "<leader>gy", "<cmd>GitLink<cr>", { desc = "Yank git link" })
 
 -- lspzero
