@@ -174,8 +174,8 @@ require("lazy").setup({
 			"onsails/lspkind.nvim",
 			"ray-x/cmp-treesitter",
 			"saadparwaiz1/cmp_luasnip",
-			{ "iguanacucumber/mag-buffer",   name = "cmp-buffer" },
-			{ "iguanacucumber/mag-cmdline",  name = "cmp-cmdline" },
+			{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+			{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
 			{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
 			{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
 		},
@@ -445,14 +445,14 @@ require("lazy").setup({
 		"NvChad/nvim-colorizer.lua",
 		opts = {
 			user_default_options = {
-				RRGGBBAA = true,                   -- #RRGGBBAA hex codes
-				AARRGGBB = true,                   -- 0xAARRGGBB hex codes
-				rgb_fn = true,                     -- CSS rgb() and rgba() functions
-				hsl_fn = true,                     -- CSS hsl() and hsla() functions
-				css = true,                        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = true,                     -- Enable all CSS *functions*: rgb_fn, hsl_fn
-				mode = "background",               -- Set the display mode.
-				tailwind = true,                   -- Enable tailwind colors
+				RRGGBBAA = true, -- #RRGGBBAA hex codes
+				AARRGGBB = true, -- 0xAARRGGBB hex codes
+				rgb_fn = true, -- CSS rgb() and rgba() functions
+				hsl_fn = true, -- CSS hsl() and hsla() functions
+				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				mode = "background", -- Set the display mode.
+				tailwind = true, -- Enable tailwind colors
 				sass = { enable = true, parsers = { "css" } }, -- Disable sass colors
 			},
 		},
@@ -469,6 +469,7 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"ActivityWatch/aw-watcher-vim",
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
 		"OXY2DEV/markview.nvim",
@@ -485,25 +486,25 @@ require("lazy").setup({
 		"tpope/vim-sleuth",
 		"trevorhauter/gitportal.nvim",
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
-		{ "chentoast/marks.nvim",          opts = {} },
-		{ "danymat/neogen",                config = true },
-		{ "echasnovski/mini.ai",           version = false,       opts = {} },
-		{ "folke/trouble.nvim",            opts = {} },
-		{ "kylechui/nvim-surround",        opts = {} },
-		{ "linrongbin16/gitlinker.nvim",   cmd = "GitLink",       opts = {} },
-		{ "nacro90/numb.nvim",             opts = {} },
-		{ "numToStr/Comment.nvim",         event = "VeryLazy",    opts = {} },
-		{ "nvchad/menu",                   lazy = true },
-		{ "nvchad/minty",                  lazy = true },
-		{ "nvchad/showkeys",               cmd = "ShowkeysToggle" },
-		{ "nvchad/volt",                   lazy = true },
-		{ "sQVe/sort.nvim",                opts = {} },
-		{ "smjonas/inc-rename.nvim",       opts = {} },
-		{ "sphamba/smear-cursor.nvim", opts = {}, },
+		{ "chentoast/marks.nvim", opts = {} },
+		{ "danymat/neogen", config = true },
+		{ "echasnovski/mini.ai", version = false, opts = {} },
+		{ "folke/trouble.nvim", opts = {} },
+		{ "kylechui/nvim-surround", opts = {} },
+		{ "linrongbin16/gitlinker.nvim", cmd = "GitLink", opts = {} },
+		{ "nacro90/numb.nvim", opts = {} },
+		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
+		{ "nvchad/menu", lazy = true },
+		{ "nvchad/minty", lazy = true },
+		{ "nvchad/showkeys", cmd = "ShowkeysToggle" },
+		{ "nvchad/volt", lazy = true },
+		{ "sQVe/sort.nvim", opts = {} },
+		{ "smjonas/inc-rename.nvim", opts = {} },
+		{ "sphamba/smear-cursor.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
-		{ "tzachar/highlight-undo.nvim",   opts = {} },
-		{ "williamboman/mason.nvim",       opts = {} },
-		{ "yamatsum/nvim-cursorline",      opts = {} },
+		{ "tzachar/highlight-undo.nvim", opts = {} },
+		{ "williamboman/mason.nvim", opts = {} },
+		{ "yamatsum/nvim-cursorline", opts = {} },
 	},
 }, {
 	performance = {
