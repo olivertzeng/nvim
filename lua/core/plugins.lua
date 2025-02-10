@@ -405,6 +405,12 @@ require("lazy").setup({
 		opts = { symbol = "╎" },
 	},
 	{
+		"nvzone/typr",
+		dependencies = "nvzone/volt",
+		opts = {},
+		cmd = { "Typr", "TyprStats" },
+	},
+	{
 		"kevinhwang91/nvim-fundo",
 		require = "kevinhwang91/promise-async",
 		run = function()
@@ -501,7 +507,6 @@ require("lazy").setup({
 		{ "sQVe/sort.nvim", opts = {} },
 		{ "smjonas/inc-rename.nvim", opts = {} },
 		{ "sphamba/smear-cursor.nvim", opts = {} },
-		{ "spywhere/detect-language.nvim", opts = {} },
 		{ "tzachar/highlight-undo.nvim", opts = {} },
 		{ "williamboman/mason.nvim", opts = {} },
 		{ "yamatsum/nvim-cursorline", opts = {} },
