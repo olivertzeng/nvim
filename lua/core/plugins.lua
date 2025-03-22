@@ -202,6 +202,12 @@ require("lazy").setup({
 		version = "*",
 		config = true,
 		default_mappings = true,
+		opts = {
+			highlights = {
+				incoming = "DiffAdd",
+				current = "DiffChange",
+			},
+		},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -242,6 +248,7 @@ require("lazy").setup({
 					"qmljs",
 					"query",
 					"regex",
+					"requirements",
 					"rst",
 					"scss",
 					"toml",

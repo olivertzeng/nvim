@@ -1,25 +1,6 @@
 local telescope = require("telescope")
 telescope.setup({
 	extensions = {
-		undo = {
-			mappings = {
-				i = {
-					["<cr>"] = require("telescope-undo.actions").yank_additions,
-					["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
-					["<C-cr>"] = require("telescope-undo.actions").restore,
-				},
-				n = {
-					["y"] = require("telescope-undo.actions").yank_additions,
-					["Y"] = require("telescope-undo.actions").yank_deletions,
-					["u"] = require("telescope-undo.actions").restore,
-				},
-				side_by_side = true,
-				layout_strategy = "vertical",
-				layout_config = {
-					preview_height = 0.8,
-				},
-			},
-		},
 		hop = {
 			-- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
 			-- Highlight groups to link to signs and lines; the below configuration refers to demo
@@ -55,6 +36,25 @@ telescope.setup({
 				replay = "q",
 				delete = "d",
 				edit = "e",
+			},
+		},
+		undo = {
+			mappings = {
+				i = {
+					["<cr>"] = require("telescope-undo.actions").yank_additions,
+					["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+					["<C-cr>"] = require("telescope-undo.actions").restore,
+				},
+				n = {
+					["y"] = require("telescope-undo.actions").yank_additions,
+					["Y"] = require("telescope-undo.actions").yank_deletions,
+					["u"] = require("telescope-undo.actions").restore,
+				},
+				side_by_side = true,
+				layout_strategy = "vertical",
+				layout_config = {
+					preview_height = 0.8,
+				},
 			},
 		},
 	},

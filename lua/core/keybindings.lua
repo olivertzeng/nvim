@@ -3,6 +3,14 @@ local map = require("core.utils").map
 vim.g.mapleader = " "
 local M = {}
 
+-- Git Conflicts
+map("n", "<leader>C0", "<Plug>(git-conflict-none)")
+map("n", "<leader>Cb", "<Plug>(git-conflict-both)")
+map("n", "<leader>Cn", "<Plug>(git-conflict-prev-conflict)")
+map("n", "<leader>Co", "<Plug>(git-conflict-ours)")
+map("n", "<leader>Cp", "<Plug>(git-conflict-next-conflict)")
+map("n", "<leader>Ct", "<Plug>(git-conflict-theirs)")
+
 -- Trouble
 map("n", "<leader>xL", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
 map("n", "<leader>xQ", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
@@ -40,8 +48,9 @@ map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 map("n", "<leader>fc", "<CMD>Telescope commands<CR>")
 map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
 map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
-map("n", "<leader>fp", "<CMD>Telescope lazy_plugins<CR>", { desc = "Search For Plugins" })
 map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
+map("n", "<leader>fo", "<CMD>Telescope conflicts<CR>")
+map("n", "<leader>fp", "<CMD>Telescope lazy_plugins<CR>", { desc = "Search For Plugins" })
 map("n", "<leader>fs", "<CMD>Telescope symbols<CR>")
 map("n", "<leader>fu", "<cmd>Telescope undo<cr>")
 

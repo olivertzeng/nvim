@@ -16,12 +16,13 @@ require("lspconfig").basedpyright.setup({
 })
 
 lsp_zero.setup_servers({
-	"gopls",
-	"css_variables",
+	"basedpyright",
 	"bashls",
 	"biome",
 	"clangd",
+	"css_variables",
 	"cssls",
+	"gopls",
 	"lua_ls",
 	"markdown_oxide",
 	"marksman",
