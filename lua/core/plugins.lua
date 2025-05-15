@@ -1,5 +1,11 @@
 require("lazy").setup({
 	{
+		"OXY2DEV/markview.nvim",
+		event = "InsertEnter",
+		ft = { "markdown", "html", "tex", "plaintex", "typst", "yaml" },
+		lazy = false,
+	},
+	{
 		"goolord/alpha-nvim",
 		config = function()
 			require("configs.alpha")
@@ -74,7 +80,6 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"stevearc/oil.nvim",
 		opts = {
@@ -274,6 +279,10 @@ require("lazy").setup({
 							multiline_threshold = 2,
 						},
 					},
+					{
+						"OXY2DEV/markview.nvim",
+						lazy = false,
+					},
 				},
 			})
 			require("nvim-treesitter.install").prefer_git = true
@@ -301,25 +310,6 @@ require("lazy").setup({
 		"tiagovla/scope.nvim",
 		event = "VimEnter",
 		opts = { restore_state = true },
-	},
-	{
-		"gerazov/toggle-bool.nvim",
-		opts = {
-			additional_toggles = {
-				All = "None",
-				Allow = "Deny",
-				Before = "After",
-				Enable = "Disable",
-				Enabled = "Disabled",
-				First = "Last",
-				Ingress = "Egress",
-				Internal = "External",
-				On = "Off",
-				Persistent = "Ephemeral",
-				Yes = "No",
-				["0"] = "1",
-			},
-		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -485,7 +475,6 @@ require("lazy").setup({
 		"ActivityWatch/aw-watcher-vim",
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
-		"OXY2DEV/markview.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"hinell/lsp-timeout.nvim",
@@ -495,7 +484,6 @@ require("lazy").setup({
 		"letieu/hacker.nvim",
 		"neovim/nvim-lspconfig",
 		"rcarriga/nvim-notify",
-		"tamton-aquib/duck.nvim",
 		"tpope/vim-sleuth",
 		"trevorhauter/gitportal.nvim",
 		{ "briangwaltney/paren-hint.nvim", opts = {} },

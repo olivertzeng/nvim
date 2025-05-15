@@ -154,19 +154,6 @@ end, { desc = "Next error/warning todo comment" })
 map("n", "<leader>su", function()
 	vim.fn.feedkeys(":SudaWrite")
 end, { desc = "Gain Write Permission" })
--- toggle-bool
-map("n", "<leader>tb", "<CMD>lua require('toggle-bool').toggle_bool()<CR>", { desc = "Toggle bool" })
-
--- install amongsus
-map("n", "<leader>dd", function()
-	require("duck").hatch("ඞ")
-end, { desc = "Spawn Your New Pet" })
-map("n", "<leader>dk", function()
-	require("duck").cook()
-end, { desc = "Cook Your Pet" })
-map("n", "<leader>da", function()
-	require("duck").cook_all()
-end, { desc = "Cook All Of Your Pets" })
 
 -- Git Link
 map({ "n", "v" }, "<leader>gp", function()
