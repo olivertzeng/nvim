@@ -1,6 +1,15 @@
 require("lazy").setup({
 	{
 		"OXY2DEV/markview.nvim",
+		config = function(plugin, opts)
+			--
+
+			-- Force markview.nvim to be sourced before everything else
+			vim.opt.rtp:prepend(plugin.dir)
+
+			-- Set up the plugin
+			require("markview").setup(opts)
+		end,
 		event = "InsertEnter",
 		ft = { "markdown", "html", "tex", "plaintex", "typst", "yaml" },
 		lazy = false,
@@ -486,6 +495,7 @@ require("lazy").setup({
 		"rcarriga/nvim-notify",
 		"tpope/vim-sleuth",
 		"trevorhauter/gitportal.nvim",
+		"vuciv/golf",
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "danymat/neogen", config = true },

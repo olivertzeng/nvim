@@ -15,6 +15,15 @@ require("lspconfig").basedpyright.setup({
 	},
 })
 
+require("lspconfig").biome.setup({
+	capabilities = capabilities,
+	settings = {
+		formatter = {
+			indentWidth = 4,
+		},
+	},
+})
+
 lsp_zero.setup_servers({
 	"basedpyright",
 	"bashls",

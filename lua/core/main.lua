@@ -28,7 +28,7 @@ vim_opts({
 		mouse = "a",
 		mousemoveevent = true,
 		number = true,
-		numberwidth = 6,
+		numberwidth = 4,
 		relativenumber = true,
 		scrolloff = 5,
 		sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
@@ -45,7 +45,7 @@ vim_opts({
 	},
 })
 
-vim.filetype.add {
+vim.filetype.add({
 	extension = {
 		sh = "sh",
 		zsh = "sh",
@@ -55,4 +55,4 @@ vim.filetype.add {
 		[".zshenv"] = "sh",
 		[".zshrc"] = "sh",
 	},
-}
+})
