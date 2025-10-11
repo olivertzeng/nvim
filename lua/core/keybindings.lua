@@ -75,12 +75,6 @@ local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
 map("t", "<C-\\>", "<C-\\><C-n>")
 -- open terminal as a regular window
 map("n", "<C-\\>", "<CMD>ToggleTerm go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "New Terminal" })
-map(
-	"n",
-	"<leader>tk",
-	"<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>",
-	{ desc = "tokei" }
-)
 map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "Open Lazygit" })
 
 -- hop.nvim
@@ -132,9 +126,9 @@ M.gitsigns = function()
 	map("n", "<leader>td", gs.toggle_deleted, { desc = "toggle deleted line" })
 end
 
--- Oil
-map("n", "<leader>ec", "<CMD>Oil ~/.config/nvim/lua<CR>", { desc = "Edit Nvim Config" })
-map("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "File Explorer" })
+-- Fyler
+map("n", "<leader>ec", "<CMD>Fyler cwd=~/.config/nvim/lua<CR>", { desc = "Edit Nvim Config" })
+map("n", "<leader>ex", "<CMD>Fyler<CR>", { desc = "File Explorer" })
 
 -- Todo
 map("n", "]t", function()
@@ -180,11 +174,14 @@ map("n", "<leader>rn", function()
 	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "LSP rename" })
 
+-- store
+map("n", "<Leader>st", "<CMD>Store<CR>", { desc = "Store" })
+
 -- menu
 map("n", "<RightMouse>", function()
 	vim.cmd.exec('"normal! \\<RightMouse>"')
 
-	local options = vim.bo.ft == "oil" or "default"
+	local options = vim.bo.ft == "fyler" or "default"
 	require("menu").open(options, { mouse = true })
 end, {})
 

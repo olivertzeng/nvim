@@ -90,13 +90,16 @@ require("lazy").setup({
 		},
 	},
 	{
-		"stevearc/oil.nvim",
-		opts = {
-			lsp_file_methods = {
-				autosave_changes = true,
-			},
-			watch_for_changes = true,
+		"A7Lavinraj/fyler.nvim",
+		dependencies = { "echasnovski/mini.icons" },
+		opts = { views = { explorer = { default_explorer = true } } },
+	},
+	{
+		"alex-popov-tech/store.nvim",
+		dependencies = {
+			"OXY2DEV/markview.nvim",
 		},
+		cmd = "Store",
 	},
 	{
 		"folke/noice.nvim",
@@ -195,9 +198,16 @@ require("lazy").setup({
 		},
 	},
 	{
-		"m4xshen/hardtime.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		opts = { disable_mouse = false },
+		"shahshlok/vim-coach.nvim",
+		dependencies = {
+			"folke/snacks.nvim",
+		},
+		config = function()
+			require("vim-coach").setup()
+		end,
+		keys = {
+			{ "<leader>?", "<cmd>VimCoach<cr>", desc = "Vim Coach" },
+		},
 	},
 	{
 		"yutkat/git-rebase-auto-diff.nvim",
@@ -503,6 +513,7 @@ require("lazy").setup({
 		{ "folke/trouble.nvim", opts = {} },
 		{ "kylechui/nvim-surround", opts = {} },
 		{ "linrongbin16/gitlinker.nvim", cmd = "GitLink", opts = {} },
+		{ "lnus/fencey.nvim", opts = {} },
 		{ "nacro90/numb.nvim", opts = {} },
 		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 		{ "nvchad/menu", lazy = true },
