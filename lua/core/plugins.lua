@@ -546,6 +546,7 @@ require("lazy").setup({
 		{ "chentoast/marks.nvim", opts = {} },
 		{ "danymat/neogen", config = true },
 		{ "echasnovski/mini.ai", version = false, opts = {} },
+		{ "esmuellert/vscode-diff.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
 		{ "folke/trouble.nvim", opts = {} },
 		{ "kylechui/nvim-surround", opts = {} },
 		{ "linrongbin16/gitlinker.nvim", cmd = "GitLink", opts = {} },
