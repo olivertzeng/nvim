@@ -39,7 +39,6 @@ vim_opts({
 		softtabstop = 4,
 		tabstop = 4,
 		termguicolors = true,
-		textwidth = 100,
 		undofile = true,
 		updatetime = 100,
 	},
