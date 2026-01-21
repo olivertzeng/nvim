@@ -237,8 +237,13 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
+		dependencies = {
+			"HiPhish/rainbow-delimiters.nvim",
+			"nvim-treesitter/nvim-treesitter-context",
+		},
 		config = function()
-			require("nvim-treesitter.configs").setup({
+			---@diagnostic disable-next-line: missing-fields
+			require("nvim-treesitter").setup({
 				ensure_installed = {
 					"bash",
 					"bibtex",
@@ -287,30 +292,8 @@ require("lazy").setup({
 				highlight = { enable = true },
 				incremental_selection = { enable = true },
 				autotag = { enable = true },
-				rainbow = { enable = true, disable = { "html" }, extended_mode = false },
-				dependencies = {
-					"nvim-treesitter/nvim-treesitter-textobjects",
-					"HiPhish/rainbow-delimiters.nvim",
-					{
-						"nvim-treesitter/nvim-treesitter-context",
-						opts = {
-							max_lines = 1,
-							multiline_threshold = 2,
-						},
-					},
-					{
-						"OXY2DEV/markview.nvim",
-						lazy = false,
-					},
-				},
 			})
-			require("nvim-treesitter.install").prefer_git = true
 		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"HiPhish/rainbow-delimiters.nvim",
-			"nvim-treesitter/nvim-treesitter-context",
-		},
 	},
 	{
 		"kevinhwang91/nvim-ufo",
@@ -527,17 +510,6 @@ require("lazy").setup({
 		},
 	},
 	-- lazy.nvim
-	{
-		"lowitea/aw-watcher.nvim",
-		opts = { -- required, but can be empty table: {}
-			-- add any options here
-			-- for example:
-			aw_server = {
-				host = "127.0.0.1",
-				port = 5600,
-			},
-		},
-	},
 	{
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
