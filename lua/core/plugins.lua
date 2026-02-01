@@ -485,31 +485,72 @@ require("lazy").setup({
 		lazy = false,
 	},
 	{
-		"ouuan/nvim-bigfile",
+		"yetone/avante.nvim",
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		-- ⚠️ must add this setting! ! !
+		build = "make",
+		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
 		opts = {
-			-- Default size limit in bytes
-			size_limit = 1024 * 1024, -- 5MB
-
-			-- Per-filetype size limits
-			ft_size_limits = {
-				-- javascript = 100 * 1024, -- 100KB for javascript files
+			-- add any opts here
+			-- this file can contain specific instructions for your project
+			instructions_file = "avante.md",
+			provider = "antigravity",
+			providers = {
+				antigravity = {
+					__inherited_from = "openai",
+					endpoint = "https://ag.beijixingxing.com/v1",
+					api_key = "AG_XING_KEY",
+					model = "claude-opus-4-5-thinking-1k-[星星公益站-反重力渠道]",
+					timeout = 30000, -- Timeout in milliseconds
+					extra_request_body = {
+						max_tokens = 50000,
+					},
+				},
+				cat = {
+					__inherited_from = "openai",
+					endpoint = "https://cat.beijixingxing.com/v1",
+					model = "CAT_XING_KEY",
+					timeout = 30000, -- Timeout in milliseconds
+					extra_request_body = {
+						max_tokens = 50000,
+					},
+				},
 			},
-
-			-- Show notifications when big files are detected
-			notification = true,
-
-			-- Enable basic syntax highlighting (not TreeSitter) for big files
-			-- (tips: it will be automatically disabled if too slow)
-			syntax = true,
-
-			-- Custom additional hook function to run when big files are detected
-			hook = nil,
-			-- hook = function(buf, ft)
-			--   vim.b.minianimate_disable = true
-			-- end,
 		},
-	},
-	-- lazy.nvim
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
+	}, -- lazy.nvim
 	{
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
