@@ -2,8 +2,6 @@ require("lazy").setup({
 	{
 		"OXY2DEV/markview.nvim",
 		config = function(plugin, opts)
-			--
-
 			-- Force markview.nvim to be sourced before everything else
 			vim.opt.rtp:prepend(plugin.dir)
 
@@ -33,7 +31,6 @@ require("lazy").setup({
 			},
 		},
 	},
-
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
@@ -46,7 +43,6 @@ require("lazy").setup({
 			mappings = false,
 		},
 	},
-
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		event = "VimEnter",
@@ -183,7 +179,6 @@ require("lazy").setup({
 					},
 				},
 			},
-			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"https://codeberg.org/FelipeLema/cmp-async-path",
 			"kdheepak/cmp-latex-symbols",
@@ -191,8 +186,8 @@ require("lazy").setup({
 			"onsails/lspkind.nvim",
 			"ray-x/cmp-treesitter",
 			"saadparwaiz1/cmp_luasnip",
-			{ "iguanacucumber/mag-buffer", name = "cmp-buffer" },
-			{ "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+			{ "iguanacucumber/mag-buffer",   name = "cmp-buffer" },
+			{ "iguanacucumber/mag-cmdline",  name = "cmp-cmdline" },
 			{ "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
 			{ "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
 		},
@@ -450,14 +445,14 @@ require("lazy").setup({
 		"NvChad/nvim-colorizer.lua",
 		opts = {
 			user_default_options = {
-				RRGGBBAA = true, -- #RRGGBBAA hex codes
-				AARRGGBB = true, -- 0xAARRGGBB hex codes
-				rgb_fn = true, -- CSS rgb() and rgba() functions
-				hsl_fn = true, -- CSS hsl() and hsla() functions
-				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-				mode = "background", -- Set the display mode.
-				tailwind = true, -- Enable tailwind colors
+				RRGGBBAA = true,                   -- #RRGGBBAA hex codes
+				AARRGGBB = true,                   -- 0xAARRGGBB hex codes
+				rgb_fn = true,                     -- CSS rgb() and rgba() functions
+				hsl_fn = true,                     -- CSS hsl() and hsla() functions
+				css = true,                        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+				css_fn = true,                     -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				mode = "background",               -- Set the display mode.
+				tailwind = true,                   -- Enable tailwind colors
 				sass = { enable = true, parsers = { "css" } }, -- Disable sass colors
 			},
 		},
@@ -484,73 +479,46 @@ require("lazy").setup({
 		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
 	},
-	-- {
-	-- 	"yetone/avante.nvim",
-	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-	-- 	-- ⚠️ must add this setting! ! !
-	-- 	build = "make",
-	-- 	event = "VeryLazy",
-	-- 	version = false, -- Never set this value to "*"! Never!
-	-- 	---@module 'avante'
-	-- 	---@type avante.Config
-	-- 	opts = {
-	-- 		-- add any opts here
-	-- 		-- this file can contain specific instructions for your project
-	-- 		instructions_file = "avante.md",
-	-- 		provider = "antigravity",
-	-- 		providers = {
-	-- 			antigravity = {
-	-- 				__inherited_from = "openai",
-	-- 				endpoint = "https://ag.beijixingxing.com/v1",
-	-- 				api_key = "AG_XING_KEY",
-	-- 				model = "claude-opus-4-5-thinking-1k-[星星公益站-反重力渠道]",
-	-- 				timeout = 30000, -- Timeout in milliseconds
-	-- 				extra_request_body = {
-	-- 					max_tokens = 50000,
-	-- 				},
-	-- 			},
-	-- 			cat = {
-	-- 				__inherited_from = "openai",
-	-- 				endpoint = "https://cat.beijixingxing.com/v1",
-	-- 				model = "CAT_XING_KEY",
-	-- 				timeout = 30000, -- Timeout in milliseconds
-	-- 				extra_request_body = {
-	-- 					max_tokens = 50000,
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
-	-- 		"stevearc/dressing.nvim", -- for input provider dressing
-	-- 		"folke/snacks.nvim", -- for input provider snacks
-	-- 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-	-- 		{
-	-- 			-- support for image pasting
-	-- 			"HakonHarnes/img-clip.nvim",
-	-- 			event = "VeryLazy",
-	-- 			opts = {
-	-- 				default = {
-	-- 					embed_image_as_base64 = false,
-	-- 					prompt_for_file_name = false,
-	-- 					drag_and_drop = {
-	-- 						insert_mode = true,
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		{
-	-- 			-- Make sure to set this up properly if you have lazy=true
-	-- 			"MeanderingProgrammer/render-markdown.nvim",
-	-- 			opts = {
-	-- 				file_types = { "markdown", "Avante" },
-	-- 			},
-	-- 			ft = { "markdown", "Avante" },
-	-- 		},
-	-- 	},
-	-- }, -- lazy.nvim
+	{
+		"NickvanDyke/opencode.nvim",
+		dependencies = {
+			-- Recommended for `ask()` and `select()`.
+			-- Required for `snacks` provider.
+			---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
+			{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+		},
+		config = function()
+			---@type opencode.Opts
+			vim.g.opencode_opts = {
+				-- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
+			}
+
+			-- Required for `opts.events.reload`.
+			vim.o.autoread = true
+
+			-- Recommended/example keymaps.
+			vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end,
+				{ desc = "Ask opencode…" })
+			vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,
+				{ desc = "Execute opencode action…" })
+			vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,
+				{ desc = "Toggle opencode" })
+
+			vim.keymap.set({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end,
+				{ desc = "Add range to opencode", expr = true })
+			vim.keymap.set("n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
+				{ desc = "Add line to opencode", expr = true })
+
+			vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,
+				{ desc = "Scroll opencode up" })
+			vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
+				{ desc = "Scroll opencode down" })
+
+			-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
+			vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+			vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+		end,
+	},
 	{
 		"Bekaboo/dropbar.nvim",
 		"OXY2DEV/helpview.nvim",
@@ -559,34 +527,32 @@ require("lazy").setup({
 		"hinell/lsp-timeout.nvim",
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
-		"lambdalisue/suda.vim",
 		"letieu/hacker.nvim",
-		"neovim/nvim-lspconfig",
 		"rcarriga/nvim-notify",
 		"tpope/vim-sleuth",
 		"trevorhauter/gitportal.nvim",
 		"vuciv/golf",
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
-		{ "chentoast/marks.nvim", opts = {} },
-		{ "danymat/neogen", config = true },
-		{ "echasnovski/mini.ai", version = false, opts = {} },
-		{ "esmuellert/vscode-diff.nvim", dependencies = { "MunifTanjim/nui.nvim" } },
-		{ "folke/trouble.nvim", opts = {} },
-		{ "kylechui/nvim-surround", opts = {} },
-		{ "linrongbin16/gitlinker.nvim", cmd = "GitLink", opts = {} },
-		{ "lnus/fencey.nvim", opts = {} },
-		{ "nacro90/numb.nvim", opts = {} },
-		{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
-		{ "nvchad/menu", lazy = true },
-		{ "nvchad/minty", lazy = true },
-		{ "nvchad/showkeys", cmd = "ShowkeysToggle" },
-		{ "nvchad/volt", lazy = true },
-		{ "sQVe/sort.nvim", opts = {} },
-		{ "smjonas/inc-rename.nvim", opts = {} },
-		{ "sphamba/smear-cursor.nvim", opts = {} },
-		{ "tzachar/highlight-undo.nvim", opts = {} },
-		{ "williamboman/mason.nvim", opts = {} },
-		{ "yamatsum/nvim-cursorline", opts = {} },
+		{ "chentoast/marks.nvim",          opts = {} },
+		{ "danymat/neogen",                config = true },
+		{ "echasnovski/mini.ai",           version = false,                          opts = {} },
+		{ "esmuellert/vscode-diff.nvim",   dependencies = { "MunifTanjim/nui.nvim" } },
+		{ "folke/trouble.nvim",            opts = {} },
+		{ "kylechui/nvim-surround",        opts = {} },
+		{ "linrongbin16/gitlinker.nvim",   cmd = "GitLink",                          opts = {} },
+		{ "lnus/fencey.nvim",              opts = {} },
+		{ "nacro90/numb.nvim",             opts = {} },
+		{ "numToStr/Comment.nvim",         event = "VeryLazy",                       opts = {} },
+		{ "nvchad/menu",                   lazy = true },
+		{ "nvchad/minty",                  lazy = true },
+		{ "nvchad/showkeys",               cmd = "ShowkeysToggle" },
+		{ "nvchad/volt",                   lazy = true },
+		{ "sQVe/sort.nvim",                opts = {} },
+		{ "smjonas/inc-rename.nvim",       opts = {} },
+		{ "sphamba/smear-cursor.nvim",     opts = {} },
+		{ "tzachar/highlight-undo.nvim",   opts = {} },
+		{ "williamboman/mason.nvim",       opts = {} },
+		{ "yamatsum/nvim-cursorline",      opts = {} },
 	},
 }, {
 	performance = {
