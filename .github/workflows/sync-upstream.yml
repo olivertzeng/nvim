@@ -1,0 +1,14 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    uses: olivertzeng/github-workflows/.github/workflows/sync-upstream.yml@main
+    with:
+      upstream_repo: null
+      upstream_branch: main
+      target_branch: main
