@@ -12,7 +12,6 @@ require("mason-null-ls").setup({
 		"gitlint",
 		"gofumpt",
 		"goimports-reviser",
-		"gopls",
 		"isort",
 		"latexindent",
 		"ltex-ls",

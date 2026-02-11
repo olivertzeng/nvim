@@ -524,6 +524,7 @@ require("lazy").setup({
 		"OXY2DEV/helpview.nvim",
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
+		"folke/snacks.nvim",
 		"hinell/lsp-timeout.nvim",
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
