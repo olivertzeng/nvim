@@ -46,6 +46,7 @@ vim_opts({
 
 vim.filetype.add({
 	extension = {
+		nsp = "json",
 		sh = "sh",
 		zsh = "sh",
 	},
