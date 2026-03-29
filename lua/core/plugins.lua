@@ -526,7 +526,7 @@ require("lazy").setup({
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"folke/snacks.nvim",
-		"hinell/lsp-timeout.nvim",
+		-- "hinell/lsp-timeout.nvim",
 		"jghauser/mkdir.nvim",
 		"jsongerber/thanks.nvim",
 		"letieu/hacker.nvim",
