@@ -141,7 +141,7 @@ require("lazy").setup({
 		build = ':lua require("go.install").update_all_sync()',
 	},
 	{
-		"iguanacucumber/magazine.nvim",
+		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		opts = function(_, opts)
 			opts.sources = opts.sources or {}
