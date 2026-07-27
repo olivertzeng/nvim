@@ -354,7 +354,7 @@ require("lazy").setup({
 	{
 		"lambdalisue/suda.vim",
 		config = function()
-			vim.g["suda#prompt"] = " 密碼勒？？？ "
+			vim.g["suda#prompt"] = " 密碼勒？？？ "
 		end,
 	},
 	{
@@ -486,14 +486,10 @@ require("lazy").setup({
 		"dstein64/nvim-scrollview",
 		"f-person/git-blame.nvim",
 		"folke/snacks.nvim",
-		-- "hinell/lsp-timeout.nvim",
 		"jghauser/mkdir.nvim",
-		"jsongerber/thanks.nvim",
-		"letieu/hacker.nvim",
 		"rcarriga/nvim-notify",
 		"tpope/vim-sleuth",
-		"trevorhauter/gitportal.nvim",
-		"vuciv/golf",
+		"https://codeberg.org/trevorhauter/gitportal.nvim",
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
 		{ "chentoast/marks.nvim",          opts = {} },
 		{ "danymat/neogen",                config = true },
