@@ -1,7 +1,14 @@
 -- lspconfig.lua (for Neovim 0.11+)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- bridge nvim-cmp autocomplete
+local cmp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if cmp_status then
+    capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+else
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+end
 
 -- Configure servers using vim.lsp.config
 vim.lsp.config.basedpyright = {
