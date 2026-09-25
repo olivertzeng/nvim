@@ -38,7 +38,6 @@ require("gitsigns").setup({
 		col = 1,
 	},
 	on_attach = function(bufnr)
-		require("core.keybindings").gitsigns()
 		vim.keymap.set(
 			"n",
 			"<leader>hp",

@@ -1,13 +1,7 @@
-local function diff_source()
-	local gitsigns = vim.b.gitsigns_status_dict
-	if gitsigns then
-		return {
-			added = gitsigns.added,
-			modified = gitsigns.changed,
-			removed = gitsigns.removed,
-		}
-	end
-end
+-- ============================================================================
+-- File: lua/configs/lualine.lua
+-- Description: Statusline configuration using native git components
+-- ============================================================================
 
 require("lualine").setup({
 	options = {
@@ -17,7 +11,8 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
+		-- Use built-in 'branch' instead of manual gitsigns variable
+		lualine_b = { { "branch", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
 				"filename",
@@ -30,11 +25,21 @@ require("lualine").setup({
 					directory = " ", -- Text to show when the buffer is a directory
 				},
 			},
+			-- Use built-in diff directly integrated with gitsigns
 			{
 				"diff",
 				colored = true,
 				symbols = { added = "󰐖 ", modified = "󰦓 ", removed = " " },
-				source = diff_source,
+				source = function()
+					local gitsigns = vim.b.gitsigns_status_dict
+					if gitsigns then
+						return {
+							added = gitsigns.added,
+							modified = gitsigns.changed,
+							removed = gitsigns.removed,
+						}
+					end
+				end,
 			},
 		},
 		lualine_x = {
@@ -48,11 +53,8 @@ require("lualine").setup({
 			"filetype",
 		},
 		lualine_y = { { "progress", separator = " ", padding = { left = 1, right = 0 } } },
-		lualine_z = {
-			"location",
-		},
+		lualine_z = { "location" },
 	},
-
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = { "filesize" },
