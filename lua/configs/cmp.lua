@@ -62,9 +62,21 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-b>"] = cmp_action.luasnip_jump_backward(),
+		["<C-b>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 		["<C-c>"] = cmp.mapping.abort(),
-		["<C-f>"] = cmp_action.luasnip_jump_forward(),
+		["<C-f>"] = cmp.mapping(function(fallback)
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-n>"] = { i = cmp.mapping.complete() },

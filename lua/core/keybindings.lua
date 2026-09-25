@@ -159,12 +159,15 @@ end, { desc = "Open git file" })
 
 map("n", "<leader>gy", "<cmd>GitLink<cr>", { desc = "Yank git link" })
 
--- lspzero
-map("n", "<leader>F", "<CMD>LspZeroFormat<CR>", { desc = "Format file" })
+-- Native LSPs
+map("n", "<leader>F", function()
+    vim.lsp.buf.format({ async = false })
+end, { desc = "Format file (LSP)" })
 
-map("n", "<Leader>nc", "<CMD>Neogen class<CR>", { desc = "Add class annotation" })
-map("n", "<Leader>nf", "<CMD>Neogen func<CR>", { desc = "Add function annotation" })
-map("n", "<Leader>nt", "<CMD>Neogen type<CR>", { desc = "Add type annotation" })
+-- Neogen
+map("n", "<Leader>nc", function() require('neogen').generate({ type = 'class' }) end, { desc = "Add class annotation" })
+map("n", "<Leader>nf", function() require('neogen').generate({ type = 'func' }) end, { desc = "Add function annotation" })
+map("n", "<Leader>nt", function() require('neogen').generate({ type = 'type' }) end, { desc = "Add type annotation" })
 
 -- ShowKeys
 map("n", "<Leader>kl", "<CMD>ShowkeysToggle<CR>", { desc = "Keylogger" })
