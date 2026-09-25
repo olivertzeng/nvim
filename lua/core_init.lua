@@ -29,10 +29,3 @@ HOME_PATH = os.getenv("HOME") .. "/"
 MASON_PATH = HOME_PATH .. ".local/share/nvim/mason/packages/"
 
 vim.notify = require("notify")
-
--- fix commentstrings to work with native nvim commenting
-local get_option = vim.filetype.get_option
-vim.filetype.get_option = function(filetype, option)
-	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
-		or get_option(filetype, option)
-end

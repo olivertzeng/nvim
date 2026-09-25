@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
