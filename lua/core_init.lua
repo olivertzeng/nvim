@@ -24,7 +24,6 @@ for _, source in ipairs({
 	end
 end
 
-require("configs.lsp-zero")
 require("configs.notify")
 HOME_PATH = os.getenv("HOME") .. "/"
 MASON_PATH = HOME_PATH .. ".local/share/nvim/mason/packages/"
@@ -37,5 +36,3 @@ vim.filetype.get_option = function(filetype, option)
 	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
 		or get_option(filetype, option)
 end
-
-pcall(require, "lsp-zero")
