@@ -26,11 +26,12 @@ lsp.format_on_save({
 		timeout_ms = 10000,
 	},
 	servers = {
+		["biome"] = { "javascript", "json", "typescript" },
 		["black"] = { "python" },
-		["stylua"] = { "lua" },
 		["cbfmt"] = { "markdown" },
-		["clang_format"] = { "cpp", "c", "json", "javascript", "java", "cs" },
-	}
+		["clang_format"] = { "c", "cpp", "cs", "java", "javascript", "json" },
+		["stylua"] = { "lua" },
+	},
 })
 
 lsp.setup()
