@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- 3. Load plugins from lua/plugins.lua
 require("lazy").setup("plugins", {
-	concurrency = 4,
+	concurrency = 5,
 	git = { timeout = 120 },
 	change_detection = { notify = false },
 	ui = { border = "rounded" },

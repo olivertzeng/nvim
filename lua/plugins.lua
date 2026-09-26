@@ -11,7 +11,10 @@ return {
 			require("configs.alpha")
 		end,
 	},
-	{ "akinsho/bufferline.nvim", opts = { options = { separator_style = "slant", diagnostics = "nvim_lsp" } } },
+	{
+		"akinsho/bufferline.nvim",
+		opts = { options = { separator_style = "slant", diagnostics = "nvim_lsp" } },
+	},
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
@@ -66,7 +69,12 @@ return {
 		},
 	},
 	{ "smoka7/hop.nvim", event = "VimEnter", opts = {} },
-	{ "kevinhwang91/nvim-ufo", event = "VimEnter", dependencies = "kevinhwang91/promise-async", opts = {} },
+	{
+		"kevinhwang91/nvim-ufo",
+		event = "VimEnter",
+		dependencies = "kevinhwang91/promise-async",
+		opts = {},
+	},
 	{ "stevearc/oil.nvim", lazy = false, opts = {}, dependencies = { "echasnovski/mini.icons" } },
 	{
 		"A7Lavinraj/fyler.nvim",
@@ -79,7 +87,6 @@ return {
 	{ "echasnovski/mini.indentscope", version = false, opts = {} },
 	{ "kylechui/nvim-surround", event = "VeryLazy", opts = {} },
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = { map_c_w = true } },
-	{ "numToStr/Comment.nvim", opts = {} }, -- Assuming you use this or similar for comments
 	{ "folke/todo-comments.nvim", event = "VimEnter", opts = {} },
 	{ "nacro90/numb.nvim", event = "VimEnter", opts = {} },
 	{ "jghauser/mkdir.nvim", event = "VimEnter" },
@@ -127,81 +134,94 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = {
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = { "olivertzeng/friendly-snippets" },
+				config = function()
+					require("configs.luasnip")
+					-- Explicitly load friendly-snippets from lazy's plugin directory
+					require("luasnip.loaders.from_vscode").lazy_load({
+						paths = { vim.fn.stdpath("data") .. "/lazy/friendly-snippets" },
+					})
+				end,
+			},
+			"Saghen/blink.lib",
 			"moyiz/blink-emoji.nvim",
 			"olivertzeng/friendly-snippets",
-			"saghen/blink.lib",
 		},
-		build = function()
-			require("blink.cmp").build():pwait()
-		end,
-		-- We will use the wildcard version. If it builds V2, our shim will protect it.
-		version = "*",
+		version = "1.*", -- Locks to the pre-compiled stable release
 		opts = {
-			enabled = function()
-				if vim.api.nvim_get_mode().mode == "c" then
-					return true
-				end
-				local ft = vim.bo.filetype
-				if vim.tbl_contains({ "markdown", "gitcommit" }, ft) then
-					return true
-				end
-				local ok, node = pcall(vim.treesitter.get_node)
-				if ok and node then
-					local type = node:type()
-					if type:find("comment") or type:find("doc") or type:find("string") then
-						return true
-					end
-				end
-				return false
-			end,
-			keymap = { preset = "default" },
+			snippets = { preset = "luasnip" },
+			keymap = {
+				["<CR>"] = { "accept", "fallback" },
+				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+				["<C-j>"] = { "scroll_documentation_down", "fallback" },
+				["<C-k>"] = { "scroll_documentation_up", "fallback" },
+				["<Up>"] = { "fallback" },
+				["<Down>"] = { "fallback" },
+			},
 			appearance = {
 				use_nvim_cmp_as_default = true,
 				nerd_font_variant = "mono",
 			},
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "emoji" },
-				providers = {
-					emoji = {
-						module = "blink-emoji",
-						name = "Emoji",
-						score_offset = 15,
-						opts = { insert = true },
+			completion = {
+				list = {
+					selection = {
+						preselect = false,
+						auto_insert = false,
 					},
 				},
-			},
-			signature = { enabled = true },
-			completion = {
+				ghost_text = { enabled = true },
 				menu = { border = "rounded" },
 				documentation = { auto_show = true, auto_show_delay_ms = 250, window = { border = "rounded" } },
 			},
-		},
-		config = function(_, opts)
-			-- ================================================================
-			-- V1 to V2 Async API Compatibility Shim for Community Sources
-			-- ================================================================
-			local has_v2_task, task = pcall(require, "blink.lib.task")
-			if has_v2_task then
-				-- Inject the shim into Lua's loaded packages so old sources find it
-				package.loaded["blink.cmp.lib.async"] = (function()
-					task.empty = task.resolve
-					task.on_completion = task.on_resolve
-					task.on_failure = task.on_reject
-					task.task = task
-					return task
-				end)()
-			end
+			signature = { enabled = true },
+			sources = {
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
+				providers = {
+					emoji = {
+						name = "Emoji",
+						module = "blink-emoji",
+						score_offset = 15,
+						opts = { insert = true },
+						enabled = function()
+							-- 1. Always active in markdown and git commits
+							if vim.tbl_contains({ "markdown", "gitcommit" }, vim.bo.filetype) then
+								return true
+							end
 
-			-- Initialize blink.cmp with our options
-			require("blink.cmp").setup(opts)
-		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "benfowler/telescope-luasnip.nvim" },
-		config = function()
-			require("configs.luasnip")
-		end,
+							-- 2. Inspect Treesitter node at the cursor position
+							local win = vim.api.nvim_get_current_win()
+							local cursor = vim.api.nvim_win_get_cursor(win)
+							local row = cursor[1] - 1
+							local col = math.max(0, cursor[2] - 1)
+
+							local ok, node = pcall(vim.treesitter.get_node, { pos = { row, col } })
+							if ok and node then
+								local cur = node
+								while cur do
+									if cur:type():match("comment") then
+										return true
+									end
+									cur = cur:parent()
+								end
+							end
+
+							-- 3. Fallback to standard Vim syntax group (works even if Treesitter parser is absent)
+							local syn_id = vim.fn.synID(cursor[1], cursor[2], 1)
+							local syn_name = vim.fn.synIDattr(syn_id, "name"):lower()
+							return syn_name:match("comment") ~= nil
+						end,
+					},
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
+				},
+			},
+		},
 	},
 
 	-- ── Languages & Special Tools ───────────────────────────────────────────
@@ -229,7 +249,7 @@ return {
 		lazy = false,
 		opts = {
 			picker = { enabled = true },
-			notifier = { enabled = false }, -- Keeping your nvim-notify active
+			notifier = { enabled = false }, -- Keeping nvim-notify active
 		},
 	},
 	{

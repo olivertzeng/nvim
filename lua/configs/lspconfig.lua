@@ -14,7 +14,10 @@ vim.lsp.config.basedpyright = {
 	settings = {
 		basedpyright = {
 			analysis = {
+				autoSearchPaths = false, -- Prevent aggressive workspace scanning
+				diagnosticMode = "openFilesOnly", -- Only analyze open files (huge speedup)
 				typeCheckingMode = "basic",
+				useLibraryCodeForTypes = true,
 			},
 		},
 	},
@@ -38,6 +41,7 @@ local simple_servers = {
 	"lua_ls",
 	"markdown_oxide",
 	"marksman",
+	"ts_ls",
 }
 
 for _, server in ipairs(simple_servers) do
@@ -57,4 +61,5 @@ vim.lsp.enable({
 	"lua_ls",
 	"markdown_oxide",
 	"marksman",
+	"ts_ls",
 })
