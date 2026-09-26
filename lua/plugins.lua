@@ -49,23 +49,21 @@ return {
 	{ "OXY2DEV/helpview.nvim", event = "VimEnter" },
 	{ "folke/which-key.nvim", event = "VeryLazy" },
 
-	-- ── Telescope & Navigation (Kept exactly as requested) ──────────────────
+	-- ── Navigation ──────────────────
 	{
-		"nvim-telescope/telescope.nvim",
+		"2kabhishek/nerdy.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-lua/popup.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
-			"nvim-telescope/telescope-frecency.nvim",
-			"debugloop/telescope-undo.nvim",
-			"Snikimonkd/telescope-git-conflicts.nvim",
-			"nvim-telescope/telescope-symbols.nvim",
-			"AckslD/nvim-neoclip.lua",
-			"nvim-telescope/telescope-hop.nvim",
+			"folke/snacks.nvim",
 		},
-		config = function()
-			require("configs.telescope")
-		end,
+		cmd = "Nerdy",
+		opts = {
+			max_recents = 30, -- Configure recent icons limit
+			copy_to_clipboard = false, -- Copy glyph to clipboard instead of inserting
+			copy_register = "+", -- Register to use for copying (if `copy_to_clipboard` is true)
+		},
+		keys = {
+			{ "<leader>fs", "<cmd>Nerdy list<CR>", desc = "Browse nerd icons" },
+		},
 	},
 	{ "smoka7/hop.nvim", event = "VimEnter", opts = {} },
 	{ "kevinhwang91/nvim-ufo", event = "VimEnter", dependencies = "kevinhwang91/promise-async", opts = {} },
@@ -101,8 +99,6 @@ return {
 	},
 	{ "f-person/git-blame.nvim", event = "VimEnter" },
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
-	{ "https://codeberg.org/trevorhauter/gitportal.nvim", event = "VimEnter" },
-	{ "ruifm/gitlinker.nvim", event = "VimEnter", opts = {} },
 	{ "yutkat/git-rebase-auto-diff.nvim", ft = "gitrebase" },
 
 	-- ── LSP, Formatting & Treesitter ────────────────────────────────────────
@@ -127,25 +123,77 @@ return {
 		},
 	},
 
-	-- ── Autocompletion (CMP) ────────────────────────────────────────────────
+	-- ── Autocompletion ────────────────────────────────────────────────
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		"saghen/blink.cmp",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"ray-x/cmp-treesitter",
-			"saadparwaiz1/cmp_luasnip",
-			"onsails/lspkind.nvim",
-			"L3MON4D3/LuaSnip",
-			"rafamadriz/friendly-snippets",
-			"zjp-CN/nvim-cmp-lsp-rs",
+			"moyiz/blink-emoji.nvim",
+			"olivertzeng/friendly-snippets",
+			"saghen/blink.lib",
 		},
-		config = function()
-			require("configs.cmp")
+		build = function()
+			require("blink.cmp").build():pwait()
+		end,
+		-- We will use the wildcard version. If it builds V2, our shim will protect it.
+		version = "*",
+		opts = {
+			enabled = function()
+				if vim.api.nvim_get_mode().mode == "c" then
+					return true
+				end
+				local ft = vim.bo.filetype
+				if vim.tbl_contains({ "markdown", "gitcommit" }, ft) then
+					return true
+				end
+				local ok, node = pcall(vim.treesitter.get_node)
+				if ok and node then
+					local type = node:type()
+					if type:find("comment") or type:find("doc") or type:find("string") then
+						return true
+					end
+				end
+				return false
+			end,
+			keymap = { preset = "default" },
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer", "emoji" },
+				providers = {
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15,
+						opts = { insert = true },
+					},
+				},
+			},
+			signature = { enabled = true },
+			completion = {
+				menu = { border = "rounded" },
+				documentation = { auto_show = true, auto_show_delay_ms = 250, window = { border = "rounded" } },
+			},
+		},
+		config = function(_, opts)
+			-- ================================================================
+			-- V1 to V2 Async API Compatibility Shim for Community Sources
+			-- ================================================================
+			local has_v2_task, task = pcall(require, "blink.lib.task")
+			if has_v2_task then
+				-- Inject the shim into Lua's loaded packages so old sources find it
+				package.loaded["blink.cmp.lib.async"] = (function()
+					task.empty = task.resolve
+					task.on_completion = task.on_resolve
+					task.on_failure = task.on_reject
+					task.task = task
+					return task
+				end)()
+			end
+
+			-- Initialize blink.cmp with our options
+			require("blink.cmp").setup(opts)
 		end,
 	},
 	{

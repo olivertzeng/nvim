@@ -11,8 +11,7 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		-- Use built-in 'branch' instead of manual gitsigns variable
-		lualine_b = { { "branch", icon = "" }, "diagnostics" },
+		lualine_b = { { "branch", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
 				"filename",

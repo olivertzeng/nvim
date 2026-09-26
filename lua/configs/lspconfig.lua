@@ -2,12 +2,10 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 
--- bridge nvim-cmp autocomplete
-local cmp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if cmp_status then
-    capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
-else
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- Bridge blink.cmp autocomplete
+local blink_status, blink = pcall(require, "blink.cmp")
+if blink_status then
+	capabilities = blink.get_lsp_capabilities(capabilities)
 end
 
 -- Configure servers using vim.lsp.config
