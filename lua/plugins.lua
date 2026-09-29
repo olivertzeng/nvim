@@ -178,8 +178,13 @@ return {
 			},
 			signature = { enabled = true },
 			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" },
+				default = { "lazydev", "snippets", "lsp", "path", "buffer", "emoji" },
 				providers = {
+					snippets = {
+						name = "Snippets",
+						module = "blink.cmp.sources.snippets",
+						score_offset = 90,
+					},
 					emoji = {
 						name = "Emoji",
 						module = "blink-emoji",

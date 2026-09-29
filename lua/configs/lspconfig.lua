@@ -28,6 +28,7 @@ vim.lsp.config.biome = {
 	settings = {
 		formatter = {
 			indentWidth = 4,
+			semicolons = "asNeeded",
 		},
 	},
 }
