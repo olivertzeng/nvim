@@ -38,25 +38,17 @@ opt.clipboard = "unnamedplus"
 if is_ssh then
 	vim.opt.clipboard = ""
 
-	vim.g.clipboard = {
-		name = "OSC 52",
-		copy = {
-			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-		},
-		paste = {
-			["+"] = function()
-				return {}
-			end,
-			["*"] = function()
-				return {}
-			end,
-		},
-	}
+	local osc52_group = vim.api.nvim_create_augroup("OSC52Yank", { clear = true })
 
-	vim.opt.clipboard:append("unnamedplus")
+	vim.api.nvim_create_autocmd("TextYankPost", {
+		group = osc52_group,
+		callback = function()
+			if vim.v.event.operator == "y" then
+				require("vim.ui.clipboard.osc52").copy("+")(vim.v.event.regcontents)
+			end
+		end,
+	})
 else
-	-- CachyOS 本機設定
 	vim.opt.clipboard = "unnamedplus"
 end
 
