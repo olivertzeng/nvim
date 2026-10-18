@@ -111,7 +111,52 @@ return {
 	-- ── LSP, Formatting & Treesitter ────────────────────────────────────────
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "williamboman/mason.nvim", "Wansmer/symbol-usage.nvim" },
+		dependencies = {
+			{ "williamboman/mason.nvim", opts = {} },
+			{
+				"williamboman/mason-lspconfig.nvim",
+				opts = {
+					ensure_installed = {
+						-- === LSP ===
+						"bashls",
+						"basedpyright",
+						"biome",
+						"clangd",
+						"cssls",
+						"css_variables",
+						"gopls",
+						"lua_ls",
+						"ltex",
+						"marksman",
+						"texlab",
+						"ts_ls",
+
+						-- -- === Formatter ===
+						-- "black",
+						-- "biome",
+						-- "cbfmt",
+						-- "clang-format",
+						-- "gofumpt",
+						-- "goimports-reviser",
+						-- "isort",
+						-- "latexindent",
+						-- "shfmt",
+						-- "stylua",
+						--
+						-- -- === Linter ===
+						-- "gitlint",
+						-- "markdownlint-cli2",
+						-- "revive",
+						-- "staticcheck",
+						-- "stylelint",
+						-- "systemdlint",
+						--
+						-- "markdown-toc",
+					},
+				},
+			},
+			"Wansmer/symbol-usage.nvim",
+		},
 		config = function()
 			require("configs.lspconfig")
 		end,
@@ -230,7 +275,12 @@ return {
 	},
 
 	-- ── Languages & Special Tools ───────────────────────────────────────────
-	{ "ray-x/go.nvim", dependencies = { "ray-x/guihua.lua" }, event = "CmdlineEnter", config = true },
+	{
+		"ray-x/go.nvim",
+		dependencies = { "ray-x/guihua.lua" },
+		event = "CmdlineEnter",
+		config = true,
+	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -241,7 +291,11 @@ return {
 
 	-- ── Fun, Stats & Misc ───────────────────────────────────────────────────
 	{ "vyfor/cord.nvim", event = "VeryLazy", opts = {} },
-	{ "alex-popov-tech/store.nvim", cmd = "Store", dependencies = { "OXY2DEV/markview.nvim" } },
+	{
+		"alex-popov-tech/store.nvim",
+		cmd = "Store",
+		dependencies = { "OXY2DEV/markview.nvim" },
+	},
 	{ "jaimecgomezz/here.term", event = "VimEnter" },
 	{ "nvzone/showkeys", cmd = "ShowkeysToggle" },
 	{ "tiagovla/scope.nvim", event = "VimEnter", opts = {} },
@@ -269,14 +323,6 @@ return {
 				v = { j = { k = "<Esc>" } },
 				s = { j = { k = "<Esc>" } },
 			},
-		},
-	},
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		cmd = { "MasonToolsInstall", "MasonToolsUpdate" },
-		opts = {
-			ensure_installed = { "stylua", "prettier", "biome", "ts_ls" },
-			run_on_start = true,
 		},
 	},
 	{
