@@ -51,6 +51,8 @@ if is_ssh then
 			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
 		},
 	}
+
+	opt.clipboard:append("unnamedplus")
 else
 	-- On Local Machine (CachyOS): Use standard system clipboard
 	opt.clipboard = "unnamedplus"
