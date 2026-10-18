@@ -36,10 +36,8 @@ opt.updatetime = 100
 opt.clipboard = "unnamedplus"
 
 if is_ssh then
-	-- In SSH: Clear default clipboard option so Neovim accepts the custom provider
-	opt.clipboard = ""
+	vim.opt.clipboard = ""
 
-	-- Define the OSC 52 clipboard provider (Neovim 0.10+ native API)
 	vim.g.clipboard = {
 		name = "OSC 52",
 		copy = {
@@ -47,15 +45,19 @@ if is_ssh then
 			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 		},
 		paste = {
-			["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-			["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+			["+"] = function()
+				return {}
+			end,
+			["*"] = function()
+				return {}
+			end,
 		},
 	}
 
-	opt.clipboard:append("unnamedplus")
+	vim.opt.clipboard:append("unnamedplus")
 else
-	-- On Local Machine (CachyOS): Use standard system clipboard
-	opt.clipboard = "unnamedplus"
+	-- CachyOS 本機設定
+	vim.opt.clipboard = "unnamedplus"
 end
 
 -- Indentation
