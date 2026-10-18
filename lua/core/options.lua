@@ -3,6 +3,7 @@
 -- Description: Core Neovim options optimized for 0.11+
 -- ============================================================================
 
+local is_ssh = vim.fn.exists("$SSH_CLIENT") == 1 or vim.fn.exists("$SSH_TTY") == 1
 local opt = vim.opt
 
 -- Appearance & UI
@@ -33,6 +34,22 @@ opt.mouse = "a"
 opt.mousemoveevent = true
 opt.updatetime = 100
 opt.clipboard = "unnamedplus"
+
+if is_ssh then
+	opt.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.clipboard.osc52").copy("+"),
+			["*"] = require("vim.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = require("vim.clipboard.osc52").paste("+"),
+			["*"] = require("vim.clipboard.osc52").paste("*"),
+		},
+	}
+else
+	opt.clipboard = "unnamedplus"
+end
 
 -- Indentation
 opt.expandtab = true
