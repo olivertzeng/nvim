@@ -126,7 +126,7 @@ return {
 						"css_variables",
 						"gopls",
 						"lua_ls",
-						"ltex",
+						-- "ltex",
 						"marksman",
 						"texlab",
 						"ts_ls",
